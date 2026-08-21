@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
+<meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+<meta name="robots" content="index, follow"/>
+<title>SKS Auto Spares – Royal Enfield Specialists</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0D0D0D;--green:#2E5339;--green2:#3A6B46;--gold:#C8960C;--gold2:#E8B422;--cream:#F4F0E6;--white:#FFFFFF;--dark:#141A14;}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden}
+
+/* PRELOADER */
+#preloader{position:fixed;inset:0;z-index:9999;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s ease,visibility 0.8s ease;}
+#preloader.hide{opacity:0;visibility:hidden;pointer-events:none;}
+.pl-sprocket{width:130px;height:130px;animation:spSpin 1.4s linear infinite;margin-bottom:28px;}
+@keyframes spSpin{to{transform:rotate(360deg)}}
+.pl-parts-wrap{width:340px;max-width:88vw;height:40px;overflow:hidden;position:relative;margin-bottom:20px;}
+.pl-part-item{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;opacity:0;transform:translateY(12px);transition:opacity 0.09s,transform 0.09s;}
+.pl-part-item.active{opacity:1;transform:translateY(0);}
+.pl-part-item.out{opacity:0;transform:translateY(-12px);}
+.pl-part-icon{font-size:18px;}
+.pl-part-name{font-family:'Bebas Neue',sans-serif;font-size:21px;color:var(--white);letter-spacing:2px;white-space:nowrap;}
+.pl-bar-wrap{width:240px;max-width:78vw;height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;margin-bottom:18px;}
+.pl-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--green2),var(--gold));border-radius:2px;transition:width 0.05s linear;}
+.pl-count-row{display:flex;align-items:baseline;gap:6px;margin-bottom:6px;}
+.pl-count{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--gold);line-height:1;min-width:32px;text-align:center;}
+.pl-count-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25);}
+.pl-brand{position:absolute;top:28px;left:0;width:100%;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:5px;color:rgba(255,255,255,0.35);text-transform:uppercase;}
+.pl-brand span{color:var(--gold);}
+.pl-skip{margin-top:14px;background:transparent;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.3);padding:7px 20px;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;}
+
+/* CALL BAR */
+.call-bar{position:fixed;top:0;left:0;width:100%;z-index:1001;background:var(--green);display:flex;align-items:center;justify-content:center;gap:40px;padding:8px 20px;flex-wrap:wrap;transition:transform 0.35s ease;}
+.call-bar.hide{transform:translateY(-100%);}
+.call-bar-item{display:flex;align-items:center;gap:10px;}
+.call-bar-label{font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:1px;text-transform:uppercase;}
+.call-bar-num{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--gold2);text-decoration:none;transition:color 0.2s;}
+.call-bar-num:hover{color:var(--white);}
+.call-bar-divider{width:1px;height:28px;background:rgba(255,255,255,0.15);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(13,13,13,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(200,150,12,0.15);transform:translateY(var(--nav-offset,73px));transition:transform 0.35s ease,padding 0.35s ease;}
+nav.scrolled{padding:10px 48px;transform:translateY(0);}
+.nav-logo{text-decoration:none;}
+.logo-text{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;color:var(--white);line-height:1;}
+.logo-text .g{color:var(--gold);}
+.logo-sub{font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:3px;text-transform:uppercase;margin-top:2px;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color 0.3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:var(--gold)!important;color:var(--black)!important;padding:9px 18px;font-weight:700!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:26px;height:2px;background:var(--white);}
+
+/* HERO */
+#hero{min-height:100vh;background:var(--black);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:160px 48px 80px;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(46,83,57,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(46,83,57,0.08) 1px,transparent 1px);background-size:70px 70px;pointer-events:none;}
+.hero-glow{position:absolute;top:-200px;left:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(46,83,57,0.25) 0%,transparent 70%);pointer-events:none;}
+.hero-bike{position:absolute;right:-60px;bottom:0;width:65vw;max-width:800px;opacity:0.07;pointer-events:none;}
+.hero-inner{position:relative;z-index:1;max-width:860px;}
+.hero-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold);opacity:0.5;}
+.hero-badge{display:inline-block;border:1px solid rgba(46,83,57,0.5);background:rgba(46,83,57,0.15);color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:5px 14px;margin-bottom:24px;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(58px,9vw,115px);color:var(--white);line-height:0.9;letter-spacing:2px;}
+.hero-title .g{color:var(--gold);}
+.hero-title .gr{color:var(--green2);}
+.hero-sub{margin:32px 0 0;max-width:540px;font-size:15px;line-height:1.8;color:rgba(255,255,255,0.5);font-weight:300;}
+.hero-sub strong{color:rgba(255,255,255,0.85);}
+.hero-phones{margin-top:36px;display:flex;gap:20px;flex-wrap:wrap;}
+.phone-btn{display:flex;align-items:center;gap:10px;background:var(--green);padding:13px 24px;text-decoration:none;transition:background 0.3s,transform 0.2s;border:1px solid rgba(255,255,255,0.08);}
+.phone-btn:hover{background:var(--green2);transform:translateY(-2px);}
+.phone-btn .ph-icon{font-size:18px;}
+.phone-btn .ph-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;}
+.phone-btn .ph-num{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--white);letter-spacing:2px;display:block;}
+.hero-stats{margin-top:60px;display:flex;gap:48px;flex-wrap:wrap;padding-top:36px;border-top:1px solid rgba(255,255,255,0.07);}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--gold);letter-spacing:1px;}
+.stat-label{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+
+/* TICKER */
+#ticker{background:var(--green);padding:18px 48px;display:flex;align-items:center;gap:40px;overflow:hidden;}
+#ticker .lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);white-space:nowrap;flex-shrink:0;}
+.tick-track{display:flex;gap:32px;animation:tickAnim 26s linear infinite;width:max-content;}
+.tick-track:hover{animation-play-state:paused;}
+@keyframes tickAnim{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick-tag{font-family:'Bebas Neue',sans-serif;font-size:16px;color:rgba(255,255,255,0.6);letter-spacing:2px;cursor:pointer;transition:color 0.2s;}
+.tick-tag:hover{color:var(--gold2);}
+.tick-dot{color:var(--gold);margin-left:32px;}
+
+/* COMMON */
+section.main{padding:100px 48px;}
+.eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,68px);line-height:1;letter-spacing:1px;}
+.sec-title.light{color:var(--white);}
+.gold-line{width:54px;height:2px;background:var(--gold);margin:18px 0 26px;}
+.gold-line.c{margin:18px auto 26px;}
+.body-p{font-size:15px;line-height:1.8;color:#444;max-width:540px;font-weight:300;}
+.body-p.light{color:rgba(255,255,255,0.55);}
+
+/* ABOUT */
+#about{background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:100px 48px;}
+.about-vis{background:var(--dark);position:relative;overflow:hidden;height:480px;display:flex;align-items:center;justify-content:center;}
+.about-gear{position:absolute;font-size:300px;opacity:0.04;right:-60px;bottom:-60px;animation:gearSpin 40s linear infinite;}
+@keyframes gearSpin{to{transform:rotate(360deg)}}
+.about-inner{position:relative;z-index:1;padding:40px;text-align:center;}
+.about-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--white);line-height:1.7;}
+.about-by{margin-top:22px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.re-logo{font-family:'Bebas Neue',sans-serif;font-size:60px;color:var(--green2);letter-spacing:4px;margin-top:28px;opacity:0.6;}
+
+/* PRODUCTS */
+#products{background:var(--dark);padding:80px 48px;}
+.prod-header{text-align:center;margin-bottom:40px;}
+
+/* Model box grid */
+.pm-wrap{max-width:1200px;margin:0 auto 40px;}
+.pm-group{margin-bottom:18px;}
+.pm-gtitle{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--green2);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.pm-gtitle::after{content:'';flex:1;height:1px;background:rgba(46,83,57,0.3);}
+.pm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:9px;}
+.pm-card{background:#1C1C1C;border:1px solid rgba(255,255,255,0.08);padding:14px 8px;text-align:center;cursor:pointer;transition:all 0.25s;}
+.pm-card:hover{border-color:var(--gold);background:rgba(200,150,12,0.06);transform:translateY(-2px);}
+.pm-card.selected{border-color:var(--gold);background:rgba(200,150,12,0.15);box-shadow:0 0 0 1px var(--gold) inset;}
+.pm-card.selected .pm-name{color:var(--gold);}
+.pm-icon{display:block;font-size:22px;margin-bottom:7px;}
+.pm-name{display:block;font-family:'Bebas Neue',sans-serif;font-size:13px;color:var(--white);letter-spacing:1px;}
+.pm-cc{display:block;font-size:10px;color:rgba(255,255,255,0.3);margin-top:3px;}
+
+/* Search */
+.search-wrap{max-width:620px;margin:0 auto 28px;scroll-margin-top:80px;}
+.search-box{display:flex;align-items:center;gap:10px;background:#1C1C1C;border:1px solid rgba(200,150,12,0.3);padding:14px 18px;transition:border-color 0.3s;}
+.search-box:focus-within{border-color:var(--gold);}
+.search-icon{font-size:15px;opacity:0.5;flex-shrink:0;}
+.search-box input{flex:1;background:transparent;border:none;outline:none;color:var(--white);font-size:14px;font-family:'Inter',sans-serif;}
+.search-box input::placeholder{color:rgba(255,255,255,0.3);}
+.s-clear{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:15px;cursor:pointer;flex-shrink:0;padding:2px;}
+.s-clear:hover{color:var(--gold);}
+
+/* Category tabs */
+.cat-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;}
+.cat-btn{border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.5);padding:8px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;background:transparent;font-family:'Inter',sans-serif;transition:all 0.3s;}
+.cat-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(200,150,12,0.07);}
+@media (hover:hover){ .cat-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(200,150,12,0.07);} }
+
+.cat-next-wrap{text-align:center;margin-bottom:32px;}
+.cat-hint{font-size:11px;color:rgba(255,255,255,0.28);display:block;margin-bottom:10px;}
+.show-btn{background:var(--gold);color:var(--black);border:none;padding:10px 30px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.3s,transform 0.2s;}
+.show-all-btn{background:transparent;color:var(--gold);border:1.5px solid var(--gold);padding:11px 28px;font-size:13px;letter-spacing:1px;font-weight:700;cursor:pointer;border-radius:6px;font-family:'Inter',sans-serif;transition:background 0.25s,color 0.25s;}
+.show-all-btn:hover{background:var(--gold);color:var(--black);}
+.show-btn:hover{background:var(--gold2);transform:translateY(-2px);}
+
+/* Filter bar */
+#filterBar{display:none;max-width:1200px;margin:0 auto 26px;background:rgba(46,83,57,0.18);border:1px solid rgba(46,83,57,0.5);padding:13px 20px;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;scroll-margin-top:80px;}
+.fb-label{font-size:13px;color:rgba(255,255,255,0.8);}
+.fb-name{color:var(--gold);font-weight:700;}
+.fb-clear{background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);padding:6px 14px;font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;}
+
+/* Parts grid */
+.parts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:18px;max-width:1200px;margin:0 auto;}
+.part-card{background:#1C1C1C;border:1px solid rgba(255,255,255,0.06);padding:22px 20px;display:none;position:relative;overflow:visible;transition:border-color 0.3s,transform 0.2s;}
+.part-card.show{display:block;}
+.part-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.part-card:hover{border-color:rgba(200,150,12,0.25);transform:translateY(-3px);}
+.part-card:hover::before{transform:scaleX(1);}
+@keyframes cardPop{from{opacity:0;transform:translateY(14px) scale(0.96);}to{opacity:1;transform:translateY(0) scale(1);}}
+.part-card.pop{animation:cardPop 0.4s ease both;}
+.part-card.active{border-color:rgba(200,150,12,0.35);transform:translateY(-3px);}
+.more-parts-card{grid-column:1/-1;background:linear-gradient(135deg,#1C1C1C,#181818);border:1.5px dashed rgba(200,150,12,0.4);border-radius:12px;padding:26px 20px;text-align:center;margin-top:6px;}
+.mpc-icon{font-size:28px;margin-bottom:8px;}
+.mpc-text{color:rgba(255,255,255,0.65);font-size:14px;max-width:420px;margin:0 auto 14px;line-height:1.5;}
+.mpc-btn{display:inline-block;background:var(--gold);color:#111;font-weight:700;padding:11px 24px;border-radius:8px;text-decoration:none;font-size:14px;}
+.part-card.active::before{transform:scaleX(1);}
+.want-price{max-height:0;opacity:0;overflow:hidden;transition:max-height 0.35s ease,opacity 0.35s ease,margin-top 0.35s ease;font-size:12px;color:rgba(255,255,255,0.55);margin-top:0;}
+.part-card.active .want-price{max-height:40px;opacity:1;margin-top:10px;}
+.want-price a{color:var(--gold);font-weight:600;text-decoration:underline;margin-left:4px;cursor:pointer;}
+.part-cat{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.part-name{font-family:'Bebas Neue',sans-serif;font-size:19px;color:var(--white);letter-spacing:1px;margin-bottom:6px;}
+.part-model{font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:14px;line-height:1.5;}
+.price-row{display:flex;align-items:center;justify-content:space-between;}
+.price-wrap{position:relative;display:flex;align-items:center;gap:7px;}
+.price-rs{font-size:14px;font-weight:600;color:rgba(255,255,255,0.75);}
+.price-blur{font-size:14px;font-weight:500;color:rgba(255,255,255,0.55);filter:blur(4.5px);user-select:none;}
+
+/* Eye button — line → eye morph */
+.eye-btn{background:transparent;border:1px solid rgba(255,255,255,0.2);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;flex-shrink:0;color:rgba(255,255,255,0.5);transition:border-color 0.3s,color 0.3s,transform 0.15s;}
+.eye-btn:hover{border-color:var(--gold);color:rgba(200,150,12,0.8);}
+.eye-btn:active{transform:scale(0.88);}
+.eye-shape{position:relative;width:14px;height:3px;border-radius:3px;background:currentColor;transition:width 0.32s cubic-bezier(0.34,1.56,0.64,1),height 0.32s cubic-bezier(0.34,1.56,0.64,1),border-radius 0.32s,background 0.25s,border 0.25s;}
+.eye-shape::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:0;height:0;background:currentColor;border-radius:50%;transition:width 0.22s ease 0.16s,height 0.22s ease 0.16s;}
+.eye-btn.open{border-color:var(--gold);color:var(--gold);}
+.eye-btn.open .eye-shape{width:14px;height:10px;background:transparent;border:1.8px solid currentColor;border-radius:50%;}
+.eye-btn.open .eye-shape::after{width:4px;height:4px;}
+
+.contact-tip{position:absolute;right:0;top:calc(100% + 8px);background:var(--green);opacity:0;transform:translateY(-6px) scale(0.8);pointer-events:none;z-index:20;white-space:nowrap;transition:opacity 0.22s,transform 0.22s;}
+.contact-tip a{display:block;color:var(--white);text-decoration:none;font-size:11px;font-weight:600;padding:7px 13px;}
+.contact-tip::after{content:'';position:absolute;top:-5px;right:9px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:5px solid var(--green);}
+.contact-tip.show{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
+
+.avail{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#4CAF50;background:rgba(76,175,80,0.1);padding:4px 9px;}
+.avail.ltd{color:#FF9800;background:rgba(255,152,0,0.1);}
+
+.prod-cta{text-align:center;margin-top:44px;}
+.prod-cta p{color:rgba(255,255,255,0.4);font-size:14px;margin-bottom:14px;}
+
+/* WHY CHOOSE US */
+#whyus{background:var(--green);padding:100px 48px;text-align:center;}
+.why-intro{font-size:15px;line-height:1.8;color:rgba(255,255,255,0.7);max-width:680px;margin:0 auto 48px;}
+.why-intro strong{color:var(--gold);}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1200px;margin:0 auto;}
+.why-card{padding:32px 22px;border:1px solid rgba(255,255,255,0.1);transition:background 0.3s,transform 0.3s;text-align:left;}
+.why-card:hover{background:rgba(255,255,255,0.05);transform:translateY(-5px);}
+.why-icon{font-size:34px;margin-bottom:16px;}
+.why-title{font-family:'Bebas Neue',sans-serif;font-size:19px;color:var(--white);letter-spacing:1px;margin-bottom:10px;}
+.why-text{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;}
+
+/* MODELS SECTION */
+#models-sec{background:var(--cream);padding:100px 48px;}
+.models-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-top:40px;}
+.model-group-h{grid-column:1/-1;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--green2);padding-bottom:8px;margin-top:28px;border-bottom:2px solid rgba(46,83,57,0.22);}
+.model-group-h:first-child{margin-top:0;}
+.model-card{background:var(--black);padding:26px 18px;text-align:center;border:1px solid rgba(255,255,255,0.05);transition:border-color 0.3s,transform 0.3s;cursor:pointer;}
+.model-card:hover{border-color:var(--gold);transform:translateY(-4px);}
+.model-icon{font-size:34px;margin-bottom:12px;}
+.model-name{font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--white);letter-spacing:1px;}
+.model-cc{font-size:10px;color:rgba(255,255,255,0.3);margin-top:4px;}
+.model-tap{font-size:9px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-top:8px;opacity:0.7;}
+
+/* REVIEWS */
+#reviews{background:var(--dark);padding:100px 48px;}
+#reviews .rh{text-align:center;margin-bottom:52px;}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1100px;margin:0 auto;}
+.rev-card{background:#181818;padding:30px 24px;border-left:3px solid var(--green2);}
+.rev-stars{color:var(--gold);font-size:13px;margin-bottom:12px;}
+.rev-text{font-size:13px;line-height:1.8;color:rgba(255,255,255,0.55);font-style:italic;margin-bottom:20px;}
+.rev-name{font-weight:600;font-size:12px;color:var(--white);letter-spacing:1px;text-transform:uppercase;}
+.rev-loc{font-size:11px;color:rgba(255,255,255,0.25);margin-top:3px;}
+
+/* CONTACT */
+#contact{background:var(--black);padding:100px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.ph-card{display:flex;align-items:center;gap:16px;background:#141A14;border:1px solid rgba(46,83,57,0.4);padding:18px 22px;margin-bottom:12px;text-decoration:none;transition:border-color 0.3s,transform 0.2s;}
+.ph-card:hover{border-color:var(--gold);transform:translateX(6px);}
+.ph-card .ph-nbig{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--gold);letter-spacing:2px;}
+.ph-card .ph-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);}
+.ph-circle{width:44px;height:44px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.ci{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start;}
+.map-embed-wrap{position:relative;max-width:480px;margin:0 0 22px;}
+.map-embed-wrap iframe{display:block;width:100%;}
+.get-dir-btn{position:absolute;bottom:12px;right:12px;background:var(--gold);color:var(--black);font-weight:700;font-size:13px;padding:9px 16px;border-radius:6px;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,0.4);}
+.ci-icon{font-size:18px;flex-shrink:0;margin-top:2px;}
+.ci-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.ci-val{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;}
+.cf{display:flex;flex-direction:column;gap:13px;}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.cf input,.cf textarea,.cf select{background:#1A1A1A;border:1px solid rgba(255,255,255,0.09);color:var(--white);padding:13px 15px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.3s;width:100%;}
+.cf input:focus,.cf textarea:focus,.cf select:focus{border-color:var(--gold);}
+.cf textarea{resize:vertical;min-height:100px;}
+.cf select option{background:#1A1A1A;}
+.cf button{background:var(--gold);color:var(--black);border:none;padding:13px 36px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;align-self:flex-start;transition:background 0.3s,transform 0.2s;}
+.cf button:hover{background:var(--gold2);transform:translateY(-2px);}
+
+/* FOOTER */
+footer{background:#060806;padding:60px 48px 28px;border-top:1px solid rgba(46,83,57,0.3);}
+.ft{display:grid;grid-template-columns:2fr 1fr;gap:48px;margin-bottom:40px;}
+.ft-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);letter-spacing:3px;display:block;margin-bottom:12px;text-decoration:none;}
+.ft-logo .g{color:var(--gold);}
+.ft-desc{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.8;max-width:300px;margin-bottom:22px;}
+.ft-phones{display:flex;flex-direction:column;gap:7px;}
+.ft-ph{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--green2);letter-spacing:2px;text-decoration:none;transition:color 0.3s;}
+.ft-ph:hover{color:var(--gold);}
+.ft-col h4{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.ft-col ul{list-style:none;}
+.ft-col li{margin-bottom:8px;}
+.ft-col a{font-size:13px;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.3s;}
+.ft-col a:hover{color:var(--white);}
+.ft-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.ft-bottom p{font-size:12px;color:rgba(255,255,255,0.18);}
+
+/* BTT */
+#btt{position:fixed;bottom:24px;right:24px;z-index:900;width:42px;height:42px;background:var(--green);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;opacity:0;transition:opacity 0.3s,transform 0.3s;transform:translateY(10px);}
+#btt.v{opacity:1;transform:translateY(0);}
+
+/* FADE UP */
+.fu{opacity:0;transform:translateY(26px);transition:opacity 0.7s,transform 0.7s;}
+.fu.vis{opacity:1;transform:translateY(0);}
+
+/* MOBILE MENU */
+.mob-menu{display:none;position:fixed;inset:0;z-index:1000;background:var(--black);flex-direction:column;align-items:center;justify-content:center;gap:28px;}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);text-decoration:none;letter-spacing:2px;}
+.mob-menu a:hover{color:var(--gold);}
+.mob-close{position:absolute;top:24px;right:26px;font-size:28px;color:var(--white);cursor:pointer;}
+.mob-phones{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:8px;}
+.mob-phones a{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);text-decoration:none;letter-spacing:2px;}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:14px 20px;} .nav-links{display:none;} .hamburger{display:flex;}
+  #hero{padding:130px 20px 60px;} #about,#contact{grid-template-columns:1fr;gap:32px;padding:70px 20px;}
+  .about-vis{height:240px;} .why-grid{grid-template-columns:1fr 1fr;}
+  .reviews-grid{grid-template-columns:1fr;} .ft{grid-template-columns:1fr;}
+  section.main,#products,#whyus,#models-sec,#reviews{padding:70px 20px;}
+  .hero-stats{gap:24px;} #ticker{padding:14px 20px;}
+  .call-bar{gap:14px;padding:7px 12px;} .cf-row{grid-template-columns:1fr;}
+}
+@media(max-width:600px){.why-grid{grid-template-columns:1fr;}}
+/* CONTACT CHOICE MODAL */
+#ccModal{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;padding:20px;}
+#ccModal.show{display:flex;}
+.cc-box{background:#1C1C1C;border:1px solid rgba(46,83,57,0.5);border-radius:14px;padding:28px 24px;max-width:320px;width:100%;text-align:center;}
+.cc-box h3{color:#fff;font-size:17px;margin-bottom:20px;letter-spacing:0.5px;}
+.cc-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border-radius:8px;text-decoration:none;font-size:15px;font-weight:600;margin-bottom:12px;border:none;cursor:pointer;}
+.cc-call{background:var(--green);color:#fff;}
+.cc-wa{background:#25D366;color:#fff;}
+.cc-cancel{background:transparent;color:rgba(255,255,255,0.5);font-size:13px;margin-top:4px;padding:6px;}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<!-- CONTACT CHOICE MODAL -->
+<div id="ccModal">
+  <div class="cc-box">
+    <h3>How would you like to contact us?</h3>
+    <a href="tel:9003400786" class="cc-btn cc-call">📞 Call 90034 00786</a>
+    <a href="https://wa.me/919003400786" target="_blank" rel="noopener" class="cc-btn cc-wa" id="ccWaLink">💬 WhatsApp 90034 00786</a>
+    <div class="cc-cancel" onclick="closeContactChoice()">Cancel</div>
+  </div>
+</div>
+
+<div id="preloader">
+  <svg class="pl-sprocket" viewBox="0 0 140 140" fill="none">
+    <g fill="#2E5339">
+      <rect x="64" y="2" width="12" height="18" rx="3"/><rect x="64" y="120" width="12" height="18" rx="3"/>
+      <rect x="2" y="64" width="18" height="12" rx="3"/><rect x="120" y="64" width="18" height="12" rx="3"/>
+      <rect x="22" y="16" width="12" height="18" rx="3" transform="rotate(-45 28 25)"/>
+      <rect x="96" y="16" width="12" height="18" rx="3" transform="rotate(45 102 25)"/>
+      <rect x="22" y="100" width="12" height="18" rx="3" transform="rotate(45 28 109)"/>
+      <rect x="96" y="100" width="12" height="18" rx="3" transform="rotate(-45 102 109)"/>
+    </g>
+    <circle cx="70" cy="70" r="52" fill="#1C1C1C" stroke="#2E5339" stroke-width="8"/>
+    <circle cx="70" cy="70" r="38" fill="#141A14" stroke="#3A6B46" stroke-width="2"/>
+    <circle cx="70" cy="40" r="6" fill="#0D0D0D" stroke="#C8960C" stroke-width="1.5"/>
+    <circle cx="70" cy="100" r="6" fill="#0D0D0D" stroke="#C8960C" stroke-width="1.5"/>
+    <circle cx="40" cy="70" r="6" fill="#0D0D0D" stroke="#C8960C" stroke-width="1.5"/>
+    <circle cx="100" cy="70" r="6" fill="#0D0D0D" stroke="#C8960C" stroke-width="1.5"/>
+    <circle cx="48" cy="48" r="5" fill="#0D0D0D" stroke="#C8960C" stroke-width="1.5"/>
+    <circle cx="92" cy="48" r="5" fill="#0D0D0D" stroke="#C8960C" stroke-width="1.5"/>
+    <circle cx="48" cy="92" r="5" fill="#0D0D0D" stroke="#C8960C" stroke-width="1.5"/>
+    <circle cx="92" cy="92" r="5" fill="#0D0D0D" stroke="#C8960C" stroke-width="1.5"/>
+    <circle cx="70" cy="70" r="16" fill="#2E5339" stroke="#C8960C" stroke-width="2"/>
+    <circle cx="70" cy="70" r="8" fill="#C8960C"/>
+  </svg>
+  <div class="pl-parts-wrap" id="plWrap"></div>
+  <div class="pl-bar-wrap"><div class="pl-bar" id="plBar"></div></div>
+  <div class="pl-count-row">
+    <div class="pl-count" id="plCount">5</div>
+    <div class="pl-count-lbl">seconds</div>
+  </div>
+  <p class="pl-brand">SKS <span>Auto</span> Spares</p>
+  <button class="pl-skip" onclick="openSite()">Skip →</button>
+</div>
+
+<!-- CALL BAR -->
+<div class="call-bar">
+  <div class="call-bar-item"><span class="call-bar-label">📞 Call / WhatsApp</span><a href="#" onclick="openContactChoice(event)" class="call-bar-num">90034 00786</a></div>
+  <div class="call-bar-divider"></div>
+  <div class="call-bar-item"><span class="call-bar-label">⏰ Open</span><span class="call-bar-num" style="color:rgba(255,255,255,0.5);font-size:15px;">Mon–Sat 9AM–8:30PM</span></div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo"><div class="logo-text">SKS <span class="g">Auto</span> Spares</div><div class="logo-sub">Royal Enfield Specialists</div></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Parts</a></li>
+    <li><a href="#models-sec">Models</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Call Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <span class="mob-close" onclick="toggleMenu()">✕</span>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#products" onclick="toggleMenu()">Parts</a>
+  <a href="#models-sec" onclick="toggleMenu()">Models</a>
+  <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <div class="mob-phones"><a href="tel:9003400786">📞 90034 00786</a></div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div><div class="hero-glow"></div>
+  <svg class="hero-bike" viewBox="0 0 800 500" fill="none">
+    <ellipse cx="200" cy="400" rx="110" ry="110" fill="white"/><ellipse cx="200" cy="400" rx="70" ry="70" fill="#0D0D0D"/>
+    <ellipse cx="600" cy="400" rx="110" ry="110" fill="white"/><ellipse cx="600" cy="400" rx="70" ry="70" fill="#0D0D0D"/>
+    <path d="M200 290 L350 220 L500 200 L600 290" stroke="white" stroke-width="18" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M200 290 L280 400" stroke="white" stroke-width="16" fill="none"/>
+    <path d="M600 290 L600 400" stroke="white" stroke-width="16" fill="none"/>
+    <path d="M350 220 L340 320 L280 360" stroke="white" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <rect x="310" y="280" width="160" height="100" rx="10" fill="white"/>
+    <ellipse cx="430" cy="200" rx="90" ry="40" fill="white"/>
+    <rect x="450" y="185" width="120" height="25" rx="12" fill="white"/>
+    <path d="M330 220 L310 180 L280 175 M310 180 L340 175" stroke="white" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <circle cx="295" cy="200" r="28" fill="white"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Royal Enfield Specialist Store</div>
+    <div class="hero-badge">🏍️ Genuine · OEM · Aftermarket Parts</div>
+    <h1 class="hero-title">SKS <span class="gr">AUTO</span><br/><span class="g">SPARES</span></h1>
+    <p class="hero-sub"><strong>Tamil Nadu's trusted destination</strong> for Royal Enfield spare parts. Classic 350, Bullet 350, Himalayan, Meteor, Hunter & all RE models — genuine parts at best prices.</p>
+    <div class="hero-phones">
+      <a href="#" onclick="openContactChoice(event)" class="phone-btn"><span class="ph-icon">📞</span><div><span class="ph-label">Call / WhatsApp</span><span class="ph-num">90034 00786</span></div></a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">5000+</div><div class="stat-label">RE Parts Stocked</div></div>
+      <div><div class="stat-num">40+</div><div class="stat-label">Years Experience</div></div>
+      <div><div class="stat-num">17+</div><div class="stat-label">RE Models Covered</div></div>
+      <div><div class="stat-num">30000+</div><div class="stat-label">Happy Customers</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div id="ticker">
+  <span class="lbl">RE Models We Cover →</span>
+  <div class="tick-track">
+    <span class="tick-tag" onclick="goModel('classic350')">Classic 350<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('bullet350')">Bullet 350<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('meteor350')">Meteor 350<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('hunter350')">Hunter 350<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('himalayan450')">Himalayan 450<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('guerrilla450')">Guerrilla 450<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('interceptor650')">Interceptor 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('gt650')">Continental GT 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('supermeteor650')">Super Meteor 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('classic650')">Classic 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('shotgun650')">Shotgun 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('bear650')">Bear 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('bullet650')">Bullet 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('classic350')">Classic 350<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('bullet350')">Bullet 350<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('meteor350')">Meteor 350<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('hunter350')">Hunter 350<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('himalayan450')">Himalayan 450<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('guerrilla450')">Guerrilla 450<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('interceptor650')">Interceptor 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('gt650')">Continental GT 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('supermeteor650')">Super Meteor 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('classic650')">Classic 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('shotgun650')">Shotgun 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('bear650')">Bear 650<span class="tick-dot">◆</span></span>
+    <span class="tick-tag" onclick="goModel('bullet650')">Bullet 650<span class="tick-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="fu">
+  <div class="about-vis">
+    <div class="about-gear">⚙</div>
+    <div class="about-inner">
+      <div class="re-logo">ROYAL<br/>ENFIELD</div>
+      <p class="about-quote">"We are united by our passion for Royal Enfield, powered by the trust of our riders."</p>
+      <p class="about-by">— SKS Auto Spares</p>
+    </div>
+  </div>
+  <div>
+    <p class="eyebrow">Who We Are</p>
+    <h2 class="sec-title">Tamil Nadu's #1<br/>RE Parts Shop</h2>
+    <div class="gold-line"></div>
+    <p class="body-p">SKS Auto Spares is Tamil Nadu's most trusted Royal Enfield spare parts specialist. Our founder has been in this industry for over 40 years — building a reputation on genuine parts, honest pricing, and unmatched expertise.</p>
+    <p class="body-p" style="margin-top:16px;">We stock 5,000+ genuine and OEM-quality parts for all Royal Enfield models — from the classic Bullet to the latest 650cc twins.</p>
+    <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;">
+      <a href="tel:9003400786" class="phone-btn" style="background:var(--green);"><span class="ph-icon">📞</span><div><span class="ph-label">For Details</span><span class="ph-num">90034 00786</span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="prod-header fu">
+    <p class="eyebrow">Spare Parts & Pricing</p>
+    <h2 class="sec-title light">RE Parts Price List</h2>
+    <div class="gold-line c"></div>
+    <p class="body-p light" style="margin:0 auto;">Select your model below, then choose one or more part categories, and tap Show Results.</p>
+  </div>
+
+  <!-- MODEL BOX GRID -->
+  <div class="pm-wrap fu">
+    <div class="pm-group">
+      <div class="pm-gtitle">350cc — Currently in Production</div>
+      <div class="pm-grid">
+        <div class="pm-card" data-model="classic350" onclick="selectModel('classic350')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilVSxAUEk9AK2dJ8P6lPd2zPYyLCxEm6ZSiMoYA8nigDFoq7rQI1i9zD5OZ3PlD+D5jxVKgAooooAtaZdPY6jbXcRbfBKsg2NtPBzwR0rv9bvBc3/kX9000Rw9yizMzKST8rHrwAB6d60tBe5uBgw29vZRRGVkKKjYH3cKFIGTjGTnmuQuYPL1KK4yv+lAo+4ZBcjjIPuMEVvG0U+V3OeacpLmVt7M2tVj8J3SpGmlsh2AG5tJmDA+pVshqwU8J280pWHXLQKDn97FIrY7HAU10Wn6VqN7aROyQx5Tc7BDhAMn6Dp09/wAKikijgvHg1SBI3VArGRfmXvgHg9CKEo1NtGDcqNr+8jAuPCFxLcCPRbhb+JV/ezOFgVGyePmbn/6/Sq0ng/XkbaNPaQf3onV1/MHFdHFJBNHNDCu2JsGAh9pBGcksM9c4/AVUlVYHKHUZI+4D7Wz75qLQWjNH7R6qxrQ6jdR6YbT7BKxLIWkhVfLcgcHfnhemR/KuV169jSFLWKRXlQqxeP7u7JJx+J4rB86XBHmNg9eaYeTk1CbRbSe56HZ/ERYtFispIZBIvLOnfnJ/WqereJdO1K6N3LPMZJsGQNBkpwAQvzY7da4iikM7S3u/tFnAbSOOV1JDDdhjz12ngjH45q1bX17BFsN3p1uckmOaBJW6+oBx9K4IEjoTRub+8fzoA//Z" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Classic 350</span><span class="pm-cc">349cc</span></div>
+        <div class="pm-card" data-model="bullet350" onclick="selectModel('bullet350')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2iiigAoord0CznvdL1aGC3hk3JERJI20owfIC+pIyMUAYVFXbjStQto1knsrhEYEqWjPOOtUqANBdE1No962M5GM4C8/l1rVHhQSWsM0Os6fveMNJHMXjKEjpnbg46Gt7TbONHW5vJZJYEUySeXCqpxjjceeemcetXdE0jTtTivHu7qK0uYVLtAMgNgfM2c8jrwOlK9tyrJ7GV4Y8E6VeO8us+I7KGKNgPJgY7398sAAPetvxDpfhPTdN36FJi5gO5XFxuaVum3AOawdO0yaaFZkjgSJF3BJjkOCegxn1HJ4q1cWcgu4IZrFIokEk5uI5BhSiknJAwfoe1G4WsVjqd1p+kalIl05E8T2zwpcEMNxGHYDrjJXnrmuHrq/C1pHPex/bHVUum2vuG4YbgcfXB/Ct6Sz1CFzHd6XbRyoSpX7NE3QkdQPalcHrubyR+FJ5I0i8T3cMgKwiA2rAN8uAMbehHesHWNN0Vb7f/wkmmMpbDxvFKDjJ+XODjj261xK6/qSxCMXLhAMYBI4rOlkeVy7sSxqhXPVfD+oW+jrItvq+gzCdUjkzJtIA/3gvHr3qt4+8S20mlyRW09nJc3CCHday7/kzli2OB0VR7ZrzCigLnbaHcW6wwXCKD5TYd8k+WMAhio5IBGOOma1tV1y0uZ0mlu9PWV4lLsZpPnOPvfKnGfzrzq0vJ7OTfbyMjeoNaJ8Taqcf6QOBj7goC5//9k=" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Bullet 350</span><span class="pm-cc">349cc</span></div>
+        <div class="pm-card" data-model="meteor350" onclick="selectModel('meteor350')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3GiiigAqK5mFvA0rdFxn86lrJ1u7RrCaK1voIZ2GFd3+VfqQDinZsV0tzWorzHT/iPLYFrLWQJLmCVhcTKAVALfLt29Vxj5uc5Fej2dyl3axXEYYJIoZdwwcfSm4tJN9RRnGTaXQ4SD4p6bKzKLeTcOgBB5/A1zk3xS1Cxcqv2e6V8tH94MB6MuMg+38652SDSYLCVdN09rWRt8LOJg77GwNxzwp4wSD+VZo1eK182J3RLqE5aaNsiT0Oa0jGNSVtjOUp0o3+I6C++Jev6pYEqsNtHIfkIGCAM54Pr2zWbpGr67fXP2P95cy3BVE86ZUCseQBzj8Kg8KiWa4jkjjFzNHG8ggWLdkEHG4Nx3wPfGK2NA02LSpZp9WR7xXtGFtBPGEEkvGMkZ3dx9abmoW5NSVSlUu6mmpX0bwpf3dvqer3ECslu0iSWiNt3ckMFI/unt37dK9o0vWNJTTLRUvYgohTAaTJxgdc8/nXnWuzXttBpXg3SWWGe4jE17JGMFtxJwccgAAscdeBUukaFo91p8XnSJcyQjyWlhnfaxXjIxipk4qN5scebnaprYmuvCPhezV74lodn8a3auD3zgk5rJ8OeErPWZbjUNHMt7aSK0JNzbKkYfuy5OeOnGevWsaPwzbNIPtF5fTxpz5UsoKt7HAr03QNTuY7aK2h8qKCNQqRxxKqqPQACsjouc0ngPX9KuppdDuDDFIAghYhiFB4G856duPatrS/DurXN7bJqsaG2ikExYgAggY4/wAiu0t55HUFmz+FFxcyRqSuPxFAHnHjuC40Tx3Y68WaDT7lVt5LoIHETYK4IPqMc/WrkHhAFN1lc3E9ux3RyQ3SRgj6Y61b8Ua1O9nNa3EFrcW8ilXimi3Kwrx+8a4sbl4LK9uoIAcrGkvC57DOTTcmyYxUdj//2Q==" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Meteor 350</span><span class="pm-cc">349cc</span></div>
+        <div class="pm-card" data-model="hunter350" onclick="selectModel('hunter350')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilxRigBKKXFTPaTJaR3TIRDI5RWx1I6/wCfrQBBRS4oxQAtFbllpdoj4vVuLhgeVt2CKP8AgRBz+VaaWumWl9stbSOaGSMGaLUWyYzk8qygH9M/WgDkQCSAByeldDaaVLFYhNct762glBa2keJgoI64yOc/h0q41zHa3qGzis7WRDhZbQt8q8ZJc5Oee1S6zql/dWywS34u4YUaQhrhpGUAjn5vUkfrQK9zn9W0qOwihmi1G2ukmJCrHkOuMcsMYHX1NZldB/Zl5q0UEsskVrEI/lefKIegG3aDk8dcdqoXui3drN5eYZlIyskMoZSP5j6EChgjf0mKBoIVlu44kePO0xkh2P8AgP51Pf28RbfbXUUkqgcxkoB22/MBjoDXPRyGOIwnDxqeFcZxQf31vg/IufuoMCgZ1WhXKabdyTyQW07SDZkyqxGSOwOcdvpVbxjeW8t2kRtraO4mYLLNbt8skeQenQY6Zrl1toyT14Bp8tnEkSuC2T70Ab2nvHMzR3rho3VRsPOF4I4HoR+gqhczyxXEiRJ5ig8ZTO32pmnMJysUyhwgwrZIYD0yDRNqU9rIYrYRxRr/AAqv680Af//Z" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Hunter 350</span><span class="pm-cc">349cc</span></div>
+      </div>
+    </div>
+    <div class="pm-group">
+      <div class="pm-gtitle">450cc — Currently in Production</div>
+      <div class="pm-grid">
+        <div class="pm-card" data-model="himalayan450" onclick="selectModel('himalayan450')"><span class="pm-icon">🏔️</span><span class="pm-name">Himalayan 450</span><span class="pm-cc">452cc</span></div>
+        <div class="pm-card" data-model="guerrilla450" onclick="selectModel('guerrilla450')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilVSxAUEk9AK2dJ8P6lPd2zPYyLCxEm6ZSiMoYA8nigDFoq7rQI1i9zD5OZ3PlD+D5jxVKgAooooAtaZdPY6jbXcRbfBKsg2NtPBzwR0rv9bvBc3/kX9000Rw9yizMzKST8rHrwAB6d60tBe5uBgw29vZRRGVkKKjYH3cKFIGTjGTnmuQuYPL1KK4yv+lAo+4ZBcjjIPuMEVvG0U+V3OeacpLmVt7M2tVj8J3SpGmlsh2AG5tJmDA+pVshqwU8J280pWHXLQKDn97FIrY7HAU10Wn6VqN7aROyQx5Tc7BDhAMn6Dp09/wAKikijgvHg1SBI3VArGRfmXvgHg9CKEo1NtGDcqNr+8jAuPCFxLcCPRbhb+JV/ezOFgVGyePmbn/6/Sq0ng/XkbaNPaQf3onV1/MHFdHFJBNHNDCu2JsGAh9pBGcksM9c4/AVUlVYHKHUZI+4D7Wz75qLQWjNH7R6qxrQ6jdR6YbT7BKxLIWkhVfLcgcHfnhemR/KuV169jSFLWKRXlQqxeP7u7JJx+J4rB86XBHmNg9eaYeTk1CbRbSe56HZ/ERYtFispIZBIvLOnfnJ/WqereJdO1K6N3LPMZJsGQNBkpwAQvzY7da4iikM7S3u/tFnAbSOOV1JDDdhjz12ngjH45q1bX17BFsN3p1uckmOaBJW6+oBx9K4IEjoTRub+8fzoA//Z" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Guerrilla 450</span><span class="pm-cc">452cc</span></div>
+      </div>
+    </div>
+    <div class="pm-group">
+      <div class="pm-gtitle">650cc — Currently in Production</div>
+      <div class="pm-grid">
+        <div class="pm-card" data-model="interceptor650" onclick="selectModel('interceptor650')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2iiigAoord0CznvdL1aGC3hk3JERJI20owfIC+pIyMUAYVFXbjStQto1knsrhEYEqWjPOOtUqANBdE1No962M5GM4C8/l1rVHhQSWsM0Os6fveMNJHMXjKEjpnbg46Gt7TbONHW5vJZJYEUySeXCqpxjjceeemcetXdE0jTtTivHu7qK0uYVLtAMgNgfM2c8jrwOlK9tyrJ7GV4Y8E6VeO8us+I7KGKNgPJgY7398sAAPetvxDpfhPTdN36FJi5gO5XFxuaVum3AOawdO0yaaFZkjgSJF3BJjkOCegxn1HJ4q1cWcgu4IZrFIokEk5uI5BhSiknJAwfoe1G4WsVjqd1p+kalIl05E8T2zwpcEMNxGHYDrjJXnrmuHrq/C1pHPex/bHVUum2vuG4YbgcfXB/Ct6Sz1CFzHd6XbRyoSpX7NE3QkdQPalcHrubyR+FJ5I0i8T3cMgKwiA2rAN8uAMbehHesHWNN0Vb7f/wkmmMpbDxvFKDjJ+XODjj261xK6/qSxCMXLhAMYBI4rOlkeVy7sSxqhXPVfD+oW+jrItvq+gzCdUjkzJtIA/3gvHr3qt4+8S20mlyRW09nJc3CCHday7/kzli2OB0VR7ZrzCigLnbaHcW6wwXCKD5TYd8k+WMAhio5IBGOOma1tV1y0uZ0mlu9PWV4lLsZpPnOPvfKnGfzrzq0vJ7OTfbyMjeoNaJ8Taqcf6QOBj7goC5//9k=" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Interceptor 650</span><span class="pm-cc">648cc</span></div>
+        <div class="pm-card" data-model="gt650" onclick="selectModel('gt650')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3GiiigAqK5mFvA0rdFxn86lrJ1u7RrCaK1voIZ2GFd3+VfqQDinZsV0tzWorzHT/iPLYFrLWQJLmCVhcTKAVALfLt29Vxj5uc5Fej2dyl3axXEYYJIoZdwwcfSm4tJN9RRnGTaXQ4SD4p6bKzKLeTcOgBB5/A1zk3xS1Cxcqv2e6V8tH94MB6MuMg+38652SDSYLCVdN09rWRt8LOJg77GwNxzwp4wSD+VZo1eK182J3RLqE5aaNsiT0Oa0jGNSVtjOUp0o3+I6C++Jev6pYEqsNtHIfkIGCAM54Pr2zWbpGr67fXP2P95cy3BVE86ZUCseQBzj8Kg8KiWa4jkjjFzNHG8ggWLdkEHG4Nx3wPfGK2NA02LSpZp9WR7xXtGFtBPGEEkvGMkZ3dx9abmoW5NSVSlUu6mmpX0bwpf3dvqer3ECslu0iSWiNt3ckMFI/unt37dK9o0vWNJTTLRUvYgohTAaTJxgdc8/nXnWuzXttBpXg3SWWGe4jE17JGMFtxJwccgAAscdeBUukaFo91p8XnSJcyQjyWlhnfaxXjIxipk4qN5scebnaprYmuvCPhezV74lodn8a3auD3zgk5rJ8OeErPWZbjUNHMt7aSK0JNzbKkYfuy5OeOnGevWsaPwzbNIPtF5fTxpz5UsoKt7HAr03QNTuY7aK2h8qKCNQqRxxKqqPQACsjouc0ngPX9KuppdDuDDFIAghYhiFB4G856duPatrS/DurXN7bJqsaG2ikExYgAggY4/wAiu0t55HUFmz+FFxcyRqSuPxFAHnHjuC40Tx3Y68WaDT7lVt5LoIHETYK4IPqMc/WrkHhAFN1lc3E9ux3RyQ3SRgj6Y61b8Ua1O9nNa3EFrcW8ilXimi3Kwrx+8a4sbl4LK9uoIAcrGkvC57DOTTcmyYxUdj//2Q==" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Continental GT 650</span><span class="pm-cc">648cc</span></div>
+        <div class="pm-card" data-model="supermeteor650" onclick="selectModel('supermeteor650')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilxRigBKKXFTPaTJaR3TIRDI5RWx1I6/wCfrQBBRS4oxQAtFbllpdoj4vVuLhgeVt2CKP8AgRBz+VaaWumWl9stbSOaGSMGaLUWyYzk8qygH9M/WgDkQCSAByeldDaaVLFYhNct762glBa2keJgoI64yOc/h0q41zHa3qGzis7WRDhZbQt8q8ZJc5Oee1S6zql/dWywS34u4YUaQhrhpGUAjn5vUkfrQK9zn9W0qOwihmi1G2ukmJCrHkOuMcsMYHX1NZldB/Zl5q0UEsskVrEI/lefKIegG3aDk8dcdqoXui3drN5eYZlIyskMoZSP5j6EChgjf0mKBoIVlu44kePO0xkh2P8AgP51Pf28RbfbXUUkqgcxkoB22/MBjoDXPRyGOIwnDxqeFcZxQf31vg/IufuoMCgZ1WhXKabdyTyQW07SDZkyqxGSOwOcdvpVbxjeW8t2kRtraO4mYLLNbt8skeQenQY6Zrl1toyT14Bp8tnEkSuC2T70Ab2nvHMzR3rho3VRsPOF4I4HoR+gqhczyxXEiRJ5ig8ZTO32pmnMJysUyhwgwrZIYD0yDRNqU9rIYrYRxRr/AAqv680Af//Z" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Super Meteor 650</span><span class="pm-cc">648cc</span></div>
+        <div class="pm-card" data-model="classic650" onclick="selectModel('classic650')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilVSxAUEk9AK2dJ8P6lPd2zPYyLCxEm6ZSiMoYA8nigDFoq7rQI1i9zD5OZ3PlD+D5jxVKgAooooAtaZdPY6jbXcRbfBKsg2NtPBzwR0rv9bvBc3/kX9000Rw9yizMzKST8rHrwAB6d60tBe5uBgw29vZRRGVkKKjYH3cKFIGTjGTnmuQuYPL1KK4yv+lAo+4ZBcjjIPuMEVvG0U+V3OeacpLmVt7M2tVj8J3SpGmlsh2AG5tJmDA+pVshqwU8J280pWHXLQKDn97FIrY7HAU10Wn6VqN7aROyQx5Tc7BDhAMn6Dp09/wAKikijgvHg1SBI3VArGRfmXvgHg9CKEo1NtGDcqNr+8jAuPCFxLcCPRbhb+JV/ezOFgVGyePmbn/6/Sq0ng/XkbaNPaQf3onV1/MHFdHFJBNHNDCu2JsGAh9pBGcksM9c4/AVUlVYHKHUZI+4D7Wz75qLQWjNH7R6qxrQ6jdR6YbT7BKxLIWkhVfLcgcHfnhemR/KuV169jSFLWKRXlQqxeP7u7JJx+J4rB86XBHmNg9eaYeTk1CbRbSe56HZ/ERYtFispIZBIvLOnfnJ/WqereJdO1K6N3LPMZJsGQNBkpwAQvzY7da4iikM7S3u/tFnAbSOOV1JDDdhjz12ngjH45q1bX17BFsN3p1uckmOaBJW6+oBx9K4IEjoTRub+8fzoA//Z" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Classic 650</span><span class="pm-cc">648cc</span></div>
+        <div class="pm-card" data-model="shotgun650" onclick="selectModel('shotgun650')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2iiigAoord0CznvdL1aGC3hk3JERJI20owfIC+pIyMUAYVFXbjStQto1knsrhEYEqWjPOOtUqANBdE1No962M5GM4C8/l1rVHhQSWsM0Os6fveMNJHMXjKEjpnbg46Gt7TbONHW5vJZJYEUySeXCqpxjjceeemcetXdE0jTtTivHu7qK0uYVLtAMgNgfM2c8jrwOlK9tyrJ7GV4Y8E6VeO8us+I7KGKNgPJgY7398sAAPetvxDpfhPTdN36FJi5gO5XFxuaVum3AOawdO0yaaFZkjgSJF3BJjkOCegxn1HJ4q1cWcgu4IZrFIokEk5uI5BhSiknJAwfoe1G4WsVjqd1p+kalIl05E8T2zwpcEMNxGHYDrjJXnrmuHrq/C1pHPex/bHVUum2vuG4YbgcfXB/Ct6Sz1CFzHd6XbRyoSpX7NE3QkdQPalcHrubyR+FJ5I0i8T3cMgKwiA2rAN8uAMbehHesHWNN0Vb7f/wkmmMpbDxvFKDjJ+XODjj261xK6/qSxCMXLhAMYBI4rOlkeVy7sSxqhXPVfD+oW+jrItvq+gzCdUjkzJtIA/3gvHr3qt4+8S20mlyRW09nJc3CCHday7/kzli2OB0VR7ZrzCigLnbaHcW6wwXCKD5TYd8k+WMAhio5IBGOOma1tV1y0uZ0mlu9PWV4lLsZpPnOPvfKnGfzrzq0vJ7OTfbyMjeoNaJ8Taqcf6QOBj7goC5//9k=" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Shotgun 650</span><span class="pm-cc">648cc</span></div>
+        <div class="pm-card" data-model="bear650" onclick="selectModel('bear650')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3GiiigAqK5mFvA0rdFxn86lrJ1u7RrCaK1voIZ2GFd3+VfqQDinZsV0tzWorzHT/iPLYFrLWQJLmCVhcTKAVALfLt29Vxj5uc5Fej2dyl3axXEYYJIoZdwwcfSm4tJN9RRnGTaXQ4SD4p6bKzKLeTcOgBB5/A1zk3xS1Cxcqv2e6V8tH94MB6MuMg+38652SDSYLCVdN09rWRt8LOJg77GwNxzwp4wSD+VZo1eK182J3RLqE5aaNsiT0Oa0jGNSVtjOUp0o3+I6C++Jev6pYEqsNtHIfkIGCAM54Pr2zWbpGr67fXP2P95cy3BVE86ZUCseQBzj8Kg8KiWa4jkjjFzNHG8ggWLdkEHG4Nx3wPfGK2NA02LSpZp9WR7xXtGFtBPGEEkvGMkZ3dx9abmoW5NSVSlUu6mmpX0bwpf3dvqer3ECslu0iSWiNt3ckMFI/unt37dK9o0vWNJTTLRUvYgohTAaTJxgdc8/nXnWuzXttBpXg3SWWGe4jE17JGMFtxJwccgAAscdeBUukaFo91p8XnSJcyQjyWlhnfaxXjIxipk4qN5scebnaprYmuvCPhezV74lodn8a3auD3zgk5rJ8OeErPWZbjUNHMt7aSK0JNzbKkYfuy5OeOnGevWsaPwzbNIPtF5fTxpz5UsoKt7HAr03QNTuY7aK2h8qKCNQqRxxKqqPQACsjouc0ngPX9KuppdDuDDFIAghYhiFB4G856duPatrS/DurXN7bJqsaG2ikExYgAggY4/wAiu0t55HUFmz+FFxcyRqSuPxFAHnHjuC40Tx3Y68WaDT7lVt5LoIHETYK4IPqMc/WrkHhAFN1lc3E9ux3RyQ3SRgj6Y61b8Ua1O9nNa3EFrcW8ilXimi3Kwrx+8a4sbl4LK9uoIAcrGkvC57DOTTcmyYxUdj//2Q==" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Bear 650</span><span class="pm-cc">648cc</span></div>
+        <div class="pm-card" data-model="bullet650" onclick="selectModel('bullet650')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilxRigBKKXFTPaTJaR3TIRDI5RWx1I6/wCfrQBBRS4oxQAtFbllpdoj4vVuLhgeVt2CKP8AgRBz+VaaWumWl9stbSOaGSMGaLUWyYzk8qygH9M/WgDkQCSAByeldDaaVLFYhNct762glBa2keJgoI64yOc/h0q41zHa3qGzis7WRDhZbQt8q8ZJc5Oee1S6zql/dWywS34u4YUaQhrhpGUAjn5vUkfrQK9zn9W0qOwihmi1G2ukmJCrHkOuMcsMYHX1NZldB/Zl5q0UEsskVrEI/lefKIegG3aDk8dcdqoXui3drN5eYZlIyskMoZSP5j6EChgjf0mKBoIVlu44kePO0xkh2P8AgP51Pf28RbfbXUUkqgcxkoB22/MBjoDXPRyGOIwnDxqeFcZxQf31vg/IufuoMCgZ1WhXKabdyTyQW07SDZkyqxGSOwOcdvpVbxjeW8t2kRtraO4mYLLNbt8skeQenQY6Zrl1toyT14Bp8tnEkSuC2T70Ab2nvHMzR3rho3VRsPOF4I4HoR+gqhczyxXEiRJ5ig8ZTO32pmnMJysUyhwgwrZIYD0yDRNqU9rIYrYRxRr/AAqv680Af//Z" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Bullet 650</span><span class="pm-cc">648cc</span></div>
+      </div>
+    </div>
+    <div class="pm-group">
+      <div class="pm-gtitle">Legacy / Old Models — Still Serviced</div>
+      <div class="pm-grid">
+        <div class="pm-card" data-model="bullet500" onclick="selectModel('bullet500')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilVSxAUEk9AK2dJ8P6lPd2zPYyLCxEm6ZSiMoYA8nigDFoq7rQI1i9zD5OZ3PlD+D5jxVKgAooooAtaZdPY6jbXcRbfBKsg2NtPBzwR0rv9bvBc3/kX9000Rw9yizMzKST8rHrwAB6d60tBe5uBgw29vZRRGVkKKjYH3cKFIGTjGTnmuQuYPL1KK4yv+lAo+4ZBcjjIPuMEVvG0U+V3OeacpLmVt7M2tVj8J3SpGmlsh2AG5tJmDA+pVshqwU8J280pWHXLQKDn97FIrY7HAU10Wn6VqN7aROyQx5Tc7BDhAMn6Dp09/wAKikijgvHg1SBI3VArGRfmXvgHg9CKEo1NtGDcqNr+8jAuPCFxLcCPRbhb+JV/ezOFgVGyePmbn/6/Sq0ng/XkbaNPaQf3onV1/MHFdHFJBNHNDCu2JsGAh9pBGcksM9c4/AVUlVYHKHUZI+4D7Wz75qLQWjNH7R6qxrQ6jdR6YbT7BKxLIWkhVfLcgcHfnhemR/KuV169jSFLWKRXlQqxeP7u7JJx+J4rB86XBHmNg9eaYeTk1CbRbSe56HZ/ERYtFispIZBIvLOnfnJ/WqereJdO1K6N3LPMZJsGQNBkpwAQvzY7da4iikM7S3u/tFnAbSOOV1JDDdhjz12ngjH45q1bX17BFsN3p1uckmOaBJW6+oBx9K4IEjoTRub+8fzoA//Z" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Bullet 500cc</span><span class="pm-cc">Discontinued</span></div>
+        <div class="pm-card" data-model="scram411" onclick="selectModel('scram411')"><span class="pm-icon">🏔️</span><span class="pm-name">Scram 411</span><span class="pm-cc">Discontinued</span></div>
+        <div class="pm-card" data-model="vintage" onclick="selectModel('vintage')"><span class="pm-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2iiigAoord0CznvdL1aGC3hk3JERJI20owfIC+pIyMUAYVFXbjStQto1knsrhEYEqWjPOOtUqANBdE1No962M5GM4C8/l1rVHhQSWsM0Os6fveMNJHMXjKEjpnbg46Gt7TbONHW5vJZJYEUySeXCqpxjjceeemcetXdE0jTtTivHu7qK0uYVLtAMgNgfM2c8jrwOlK9tyrJ7GV4Y8E6VeO8us+I7KGKNgPJgY7398sAAPetvxDpfhPTdN36FJi5gO5XFxuaVum3AOawdO0yaaFZkjgSJF3BJjkOCegxn1HJ4q1cWcgu4IZrFIokEk5uI5BhSiknJAwfoe1G4WsVjqd1p+kalIl05E8T2zwpcEMNxGHYDrjJXnrmuHrq/C1pHPex/bHVUum2vuG4YbgcfXB/Ct6Sz1CFzHd6XbRyoSpX7NE3QkdQPalcHrubyR+FJ5I0i8T3cMgKwiA2rAN8uAMbehHesHWNN0Vb7f/wkmmMpbDxvFKDjJ+XODjj261xK6/qSxCMXLhAMYBI4rOlkeVy7sSxqhXPVfD+oW+jrItvq+gzCdUjkzJtIA/3gvHr3qt4+8S20mlyRW09nJc3CCHday7/kzli2OB0VR7ZrzCigLnbaHcW6wwXCKD5TYd8k+WMAhio5IBGOOma1tV1y0uZ0mlu9PWV4lLsZpPnOPvfKnGfzrzq0vJ7OTfbyMjeoNaJ8Taqcf6QOBj7goC5//9k=" style="width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 7px;"></span><span class="pm-name">Old Bullet / Vintage</span><span class="pm-cc">Legacy</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-wrap fu" id="searchWrap">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="sInput" placeholder="Search parts… e.g. piston, brake pads, Classic 350" oninput="doSearch(this.value)"/>
+      <button class="s-clear" id="sClear" onclick="clearSearch()" style="display:none">✕</button>
+    </div>
+  </div>
+
+  <!-- CATEGORY TABS -->
+  <div class="cat-tabs fu" id="catTabs">
+    <button class="cat-btn" data-all="1" onclick="catAll(this)">All Parts</button>
+    <button class="cat-btn" onclick="toggleCat('engine',this)">Engine</button>
+    <button class="cat-btn" onclick="toggleCat('brake',this)">Brakes</button>
+    <button class="cat-btn" onclick="toggleCat('electrical',this)">Electrical</button>
+    <button class="cat-btn" onclick="toggleCat('body',this)">Body & Frame</button>
+    <button class="cat-btn" onclick="toggleCat('suspension',this)">Suspension</button>
+    <button class="cat-btn" onclick="toggleCat('transmission',this)">Transmission</button>
+    <button class="cat-btn" onclick="toggleCat('wiring',this)">Wiring & Cables</button>
+  </div>
+  <div class="cat-next-wrap fu">
+    <span class="cat-hint">Select one or more categories above, then tap Show Results</span>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="show-btn" onclick="applyFilters()">Show Results →</button>
+      <button class="show-btn" onclick="showAllProducts()">📋 Show All Royal Enfield Products</button>
+      <button class="show-all-btn" id="topMinimizeBtn" style="display:none;" onclick="minimizeProducts()"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAAwADADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDzwR+1PERq4kHtUy2x9KlyPQVMzxCfSnCH2rRW2PpUgtfapcy1SZl+QfSl8j2rVFofSlNqfSpdRFexZLFak9qtx2RParllEhXkg4q3NJb2lu88zBI41LMxHQCvNnirOyPXpYVcvMzPSw9qnXTuMnAHvVdfFmgeWX+3px22Nn8sVy+t+NH1AS21rGY7SRdpDqNze554qoKtUla1vUyrVsNSje6b8jtBp4A7GmPY+1ZHgnW7zUUuILyRXEKp5eEA45ByR+FdQzrXJXrOjNwk9TpoKFempxWjPPNY8RvGtsulyywh4SJ87SS24jK8ZHGK56SWYSeZ9okMp6/M2R+PemO+4jA6dzSH5jknmvchTjBaI+XrV51JXb/4A3O58uTyeSBVmF7ZL5mQyeVhhGWAzkjAJ7d6rAcYpygA5Iz+NW9TGMrM3LnU2ttRR9PlFni3RJnRQRkgZAH5fiK1tL8TzQuYdQuhco4zFOqYOR1BFcdI/mOzsPvHPWgTFQgHRDkVy1MJTqQ5ZL/P7z0KWOnSqOcdr7dPu22P/9k=" style="width:20px;height:20px;border-radius:50%;vertical-align:middle;margin-right:6px;object-fit:cover;">Minimize Products</button>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div id="filterBar">
+    <span class="fb-label">🔧 Showing: <strong class="fb-name" id="fbName"></strong><span id="fbCountWrap"> — <span id="fbCount"></span></span></span>
+    <button class="fb-clear" onclick="clearAll()">✕ Clear</button>
+  </div>
+
+  <div id="selectPlaceholder" style="text-align:center;max-width:420px;margin:10px auto 30px;color:rgba(255,255,255,0.45);font-size:14px;line-height:1.6;">👆 Select your bike model above, or tap <strong style="color:var(--gold);">"Show All Royal Enfield Products"</strong> to view our full parts catalog.</div>
+
+  <div class="parts-grid" id="partsGrid"></div>
+
+  <div class="prod-cta fu">
+    <p>Don't see your part? Call us — we'll source it within 24 hours!</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="tel:9003400786" class="phone-btn" style="background:var(--green);"><span class="ph-icon">📞</span><div><span class="ph-label">For Details</span><span class="ph-num">90034 00786</span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="whyus" class="fu">
+  <p class="eyebrow">Why Choose Us</p>
+  <h2 class="sec-title light">The SKS Auto Spares<br/>Difference</h2>
+  <div class="gold-line c"></div>
+  <p class="why-intro">For over <strong>40 years</strong>, our founder has been at the heart of the Royal Enfield spare parts industry — building trust, one genuine part at a time.</p>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">🏆</div><div class="why-title">40 Years of Expertise</div><p class="why-text">Our owner has been in the Royal Enfield spare parts industry for over four decades. That depth of experience means you always get the right part, the right advice, and the right price — every single time.</p></div>
+    <div class="why-card"><div class="why-icon">✅</div><div class="why-title">100% Genuine Parts</div><p class="why-text">Every spare part we stock is sourced through authorised channels. Whether it is a genuine Royal Enfield OEM component or a high-quality aftermarket alternative, we never compromise on authenticity.</p></div>
+    <div class="why-card"><div class="why-icon">💰</div><div class="why-title">Best Prices, Always</div><p class="why-text">We offer the most competitive prices on Royal Enfield spare parts across Tamil Nadu. No hidden charges, no inflated margins — just honest, transparent pricing that puts our customers first.</p></div>
+    <div class="why-card"><div class="why-icon">🚚</div><div class="why-title">Fast & Reliable Delivery</div><p class="why-text">We offer same-day delivery across Kanyakumari and Chennai districts.* For all other areas across Tamil Nadu, parts are delivered within just one to two business days. <em>Delivery times may occasionally vary depending on order volume, part availability, and location.</em></p></div>
+    <div class="why-card"><div class="why-icon">🏍️</div><div class="why-title">Royal Enfield Specialists</div><p class="why-text">We deal exclusively in Royal Enfield spare parts — from the classic Bullet to the latest 650cc twins. Our specialised focus means unmatched knowledge, deeper stock, and faster sourcing.</p></div>
+    <div class="why-card"><div class="why-icon">🔍</div><div class="why-title">Hard-to-Find Parts Sourced</div><p class="why-text">Cannot find the part you need? We can. With 40 years of supplier relationships across India, we are able to source rare, discontinued, and vintage Royal Enfield components that others simply cannot.</p></div>
+    <div class="why-card"><div class="why-icon">🤝</div><div class="why-title">Trusted by Thousands</div><p class="why-text">Over three thousand satisfied customers — from individual riders to professional mechanics and fleet operators — trust SKS Auto Spares as their go-to Royal Enfield parts partner.</p></div>
+    <div class="why-card"><div class="why-icon">📞</div><div class="why-title">Expert Advice, Always Free</div><p class="why-text">Not sure which part fits your model? Just call us. Our team provides free technical guidance on part compatibility, fitment, and installation — backed by four decades of hands-on industry knowledge.</p></div>
+  </div>
+</section>
+
+<!-- MODELS SECTION -->
+<section id="models-sec" class="main fu">
+  <p class="eyebrow">Models We Cover</p>
+  <h2 class="sec-title">All Royal Enfield<br/>Models Covered</h2>
+  <div class="gold-line"></div>
+  <p class="body-p">Every model currently in production — plus legacy and vintage Royal Enfields we still service.</p>
+  <div class="models-cards">
+    <div class="model-group-h">350cc Series</div>
+    <div class="model-card" onclick="goModel('classic350')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilVSxAUEk9AK2dJ8P6lPd2zPYyLCxEm6ZSiMoYA8nigDFoq7rQI1i9zD5OZ3PlD+D5jxVKgAooooAtaZdPY6jbXcRbfBKsg2NtPBzwR0rv9bvBc3/kX9000Rw9yizMzKST8rHrwAB6d60tBe5uBgw29vZRRGVkKKjYH3cKFIGTjGTnmuQuYPL1KK4yv+lAo+4ZBcjjIPuMEVvG0U+V3OeacpLmVt7M2tVj8J3SpGmlsh2AG5tJmDA+pVshqwU8J280pWHXLQKDn97FIrY7HAU10Wn6VqN7aROyQx5Tc7BDhAMn6Dp09/wAKikijgvHg1SBI3VArGRfmXvgHg9CKEo1NtGDcqNr+8jAuPCFxLcCPRbhb+JV/ezOFgVGyePmbn/6/Sq0ng/XkbaNPaQf3onV1/MHFdHFJBNHNDCu2JsGAh9pBGcksM9c4/AVUlVYHKHUZI+4D7Wz75qLQWjNH7R6qxrQ6jdR6YbT7BKxLIWkhVfLcgcHfnhemR/KuV169jSFLWKRXlQqxeP7u7JJx+J4rB86XBHmNg9eaYeTk1CbRbSe56HZ/ERYtFispIZBIvLOnfnJ/WqereJdO1K6N3LPMZJsGQNBkpwAQvzY7da4iikM7S3u/tFnAbSOOV1JDDdhjz12ngjH45q1bX17BFsN3p1uckmOaBJW6+oBx9K4IEjoTRub+8fzoA//Z" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Classic 350</div><div class="model-cc">349cc · Reborn</div><div class="model-tap">View parts →</div></div>
+    <div class="model-card" onclick="goModel('bullet350')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2iiigAoord0CznvdL1aGC3hk3JERJI20owfIC+pIyMUAYVFXbjStQto1knsrhEYEqWjPOOtUqANBdE1No962M5GM4C8/l1rVHhQSWsM0Os6fveMNJHMXjKEjpnbg46Gt7TbONHW5vJZJYEUySeXCqpxjjceeemcetXdE0jTtTivHu7qK0uYVLtAMgNgfM2c8jrwOlK9tyrJ7GV4Y8E6VeO8us+I7KGKNgPJgY7398sAAPetvxDpfhPTdN36FJi5gO5XFxuaVum3AOawdO0yaaFZkjgSJF3BJjkOCegxn1HJ4q1cWcgu4IZrFIokEk5uI5BhSiknJAwfoe1G4WsVjqd1p+kalIl05E8T2zwpcEMNxGHYDrjJXnrmuHrq/C1pHPex/bHVUum2vuG4YbgcfXB/Ct6Sz1CFzHd6XbRyoSpX7NE3QkdQPalcHrubyR+FJ5I0i8T3cMgKwiA2rAN8uAMbehHesHWNN0Vb7f/wkmmMpbDxvFKDjJ+XODjj261xK6/qSxCMXLhAMYBI4rOlkeVy7sSxqhXPVfD+oW+jrItvq+gzCdUjkzJtIA/3gvHr3qt4+8S20mlyRW09nJc3CCHday7/kzli2OB0VR7ZrzCigLnbaHcW6wwXCKD5TYd8k+WMAhio5IBGOOma1tV1y0uZ0mlu9PWV4lLsZpPnOPvfKnGfzrzq0vJ7OTfbyMjeoNaJ8Taqcf6QOBj7goC5//9k=" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Bullet 350</div><div class="model-cc">349cc</div><div class="model-tap">View parts →</div></div>
+    <div class="model-card" onclick="goModel('meteor350')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3GiiigAqK5mFvA0rdFxn86lrJ1u7RrCaK1voIZ2GFd3+VfqQDinZsV0tzWorzHT/iPLYFrLWQJLmCVhcTKAVALfLt29Vxj5uc5Fej2dyl3axXEYYJIoZdwwcfSm4tJN9RRnGTaXQ4SD4p6bKzKLeTcOgBB5/A1zk3xS1Cxcqv2e6V8tH94MB6MuMg+38652SDSYLCVdN09rWRt8LOJg77GwNxzwp4wSD+VZo1eK182J3RLqE5aaNsiT0Oa0jGNSVtjOUp0o3+I6C++Jev6pYEqsNtHIfkIGCAM54Pr2zWbpGr67fXP2P95cy3BVE86ZUCseQBzj8Kg8KiWa4jkjjFzNHG8ggWLdkEHG4Nx3wPfGK2NA02LSpZp9WR7xXtGFtBPGEEkvGMkZ3dx9abmoW5NSVSlUu6mmpX0bwpf3dvqer3ECslu0iSWiNt3ckMFI/unt37dK9o0vWNJTTLRUvYgohTAaTJxgdc8/nXnWuzXttBpXg3SWWGe4jE17JGMFtxJwccgAAscdeBUukaFo91p8XnSJcyQjyWlhnfaxXjIxipk4qN5scebnaprYmuvCPhezV74lodn8a3auD3zgk5rJ8OeErPWZbjUNHMt7aSK0JNzbKkYfuy5OeOnGevWsaPwzbNIPtF5fTxpz5UsoKt7HAr03QNTuY7aK2h8qKCNQqRxxKqqPQACsjouc0ngPX9KuppdDuDDFIAghYhiFB4G856duPatrS/DurXN7bJqsaG2ikExYgAggY4/wAiu0t55HUFmz+FFxcyRqSuPxFAHnHjuC40Tx3Y68WaDT7lVt5LoIHETYK4IPqMc/WrkHhAFN1lc3E9ux3RyQ3SRgj6Y61b8Ua1O9nNa3EFrcW8ilXimi3Kwrx+8a4sbl4LK9uoIAcrGkvC57DOTTcmyYxUdj//2Q==" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Meteor 350</div><div class="model-cc">349cc · Cruiser</div><div class="model-tap">View parts →</div></div>
+    <div class="model-card" onclick="goModel('hunter350')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilxRigBKKXFTPaTJaR3TIRDI5RWx1I6/wCfrQBBRS4oxQAtFbllpdoj4vVuLhgeVt2CKP8AgRBz+VaaWumWl9stbSOaGSMGaLUWyYzk8qygH9M/WgDkQCSAByeldDaaVLFYhNct762glBa2keJgoI64yOc/h0q41zHa3qGzis7WRDhZbQt8q8ZJc5Oee1S6zql/dWywS34u4YUaQhrhpGUAjn5vUkfrQK9zn9W0qOwihmi1G2ukmJCrHkOuMcsMYHX1NZldB/Zl5q0UEsskVrEI/lefKIegG3aDk8dcdqoXui3drN5eYZlIyskMoZSP5j6EChgjf0mKBoIVlu44kePO0xkh2P8AgP51Pf28RbfbXUUkqgcxkoB22/MBjoDXPRyGOIwnDxqeFcZxQf31vg/IufuoMCgZ1WhXKabdyTyQW07SDZkyqxGSOwOcdvpVbxjeW8t2kRtraO4mYLLNbt8skeQenQY6Zrl1toyT14Bp8tnEkSuC2T70Ab2nvHMzR3rho3VRsPOF4I4HoR+gqhczyxXEiRJ5ig8ZTO32pmnMJysUyhwgwrZIYD0yDRNqU9rIYrYRxRr/AAqv680Af//Z" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Hunter 350</div><div class="model-cc">349cc · Urban</div><div class="model-tap">View parts →</div></div>
+    <div class="model-group-h">450cc Series</div>
+    <div class="model-card" onclick="goModel('himalayan450')"><div class="model-icon">🏔️</div><div class="model-name">Himalayan 450</div><div class="model-cc">452cc · Adventure</div><div class="model-tap">View parts →</div></div>
+    <div class="model-card" onclick="goModel('guerrilla450')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilVSxAUEk9AK2dJ8P6lPd2zPYyLCxEm6ZSiMoYA8nigDFoq7rQI1i9zD5OZ3PlD+D5jxVKgAooooAtaZdPY6jbXcRbfBKsg2NtPBzwR0rv9bvBc3/kX9000Rw9yizMzKST8rHrwAB6d60tBe5uBgw29vZRRGVkKKjYH3cKFIGTjGTnmuQuYPL1KK4yv+lAo+4ZBcjjIPuMEVvG0U+V3OeacpLmVt7M2tVj8J3SpGmlsh2AG5tJmDA+pVshqwU8J280pWHXLQKDn97FIrY7HAU10Wn6VqN7aROyQx5Tc7BDhAMn6Dp09/wAKikijgvHg1SBI3VArGRfmXvgHg9CKEo1NtGDcqNr+8jAuPCFxLcCPRbhb+JV/ezOFgVGyePmbn/6/Sq0ng/XkbaNPaQf3onV1/MHFdHFJBNHNDCu2JsGAh9pBGcksM9c4/AVUlVYHKHUZI+4D7Wz75qLQWjNH7R6qxrQ6jdR6YbT7BKxLIWkhVfLcgcHfnhemR/KuV169jSFLWKRXlQqxeP7u7JJx+J4rB86XBHmNg9eaYeTk1CbRbSe56HZ/ERYtFispIZBIvLOnfnJ/WqereJdO1K6N3LPMZJsGQNBkpwAQvzY7da4iikM7S3u/tFnAbSOOV1JDDdhjz12ngjH45q1bX17BFsN3p1uckmOaBJW6+oBx9K4IEjoTRub+8fzoA//Z" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Guerrilla 450</div><div class="model-cc">452cc · Roadster</div><div class="model-tap">View parts →</div></div>
+    <div class="model-group-h">650cc Series</div>
+    <div class="model-card" onclick="goModel('interceptor650')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2iiigAoord0CznvdL1aGC3hk3JERJI20owfIC+pIyMUAYVFXbjStQto1knsrhEYEqWjPOOtUqANBdE1No962M5GM4C8/l1rVHhQSWsM0Os6fveMNJHMXjKEjpnbg46Gt7TbONHW5vJZJYEUySeXCqpxjjceeemcetXdE0jTtTivHu7qK0uYVLtAMgNgfM2c8jrwOlK9tyrJ7GV4Y8E6VeO8us+I7KGKNgPJgY7398sAAPetvxDpfhPTdN36FJi5gO5XFxuaVum3AOawdO0yaaFZkjgSJF3BJjkOCegxn1HJ4q1cWcgu4IZrFIokEk5uI5BhSiknJAwfoe1G4WsVjqd1p+kalIl05E8T2zwpcEMNxGHYDrjJXnrmuHrq/C1pHPex/bHVUum2vuG4YbgcfXB/Ct6Sz1CFzHd6XbRyoSpX7NE3QkdQPalcHrubyR+FJ5I0i8T3cMgKwiA2rAN8uAMbehHesHWNN0Vb7f/wkmmMpbDxvFKDjJ+XODjj261xK6/qSxCMXLhAMYBI4rOlkeVy7sSxqhXPVfD+oW+jrItvq+gzCdUjkzJtIA/3gvHr3qt4+8S20mlyRW09nJc3CCHday7/kzli2OB0VR7ZrzCigLnbaHcW6wwXCKD5TYd8k+WMAhio5IBGOOma1tV1y0uZ0mlu9PWV4lLsZpPnOPvfKnGfzrzq0vJ7OTfbyMjeoNaJ8Taqcf6QOBj7goC5//9k=" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Interceptor 650</div><div class="model-cc">648cc</div><div class="model-tap">View parts →</div></div>
+    <div class="model-card" onclick="goModel('gt650')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3GiiigAqK5mFvA0rdFxn86lrJ1u7RrCaK1voIZ2GFd3+VfqQDinZsV0tzWorzHT/iPLYFrLWQJLmCVhcTKAVALfLt29Vxj5uc5Fej2dyl3axXEYYJIoZdwwcfSm4tJN9RRnGTaXQ4SD4p6bKzKLeTcOgBB5/A1zk3xS1Cxcqv2e6V8tH94MB6MuMg+38652SDSYLCVdN09rWRt8LOJg77GwNxzwp4wSD+VZo1eK182J3RLqE5aaNsiT0Oa0jGNSVtjOUp0o3+I6C++Jev6pYEqsNtHIfkIGCAM54Pr2zWbpGr67fXP2P95cy3BVE86ZUCseQBzj8Kg8KiWa4jkjjFzNHG8ggWLdkEHG4Nx3wPfGK2NA02LSpZp9WR7xXtGFtBPGEEkvGMkZ3dx9abmoW5NSVSlUu6mmpX0bwpf3dvqer3ECslu0iSWiNt3ckMFI/unt37dK9o0vWNJTTLRUvYgohTAaTJxgdc8/nXnWuzXttBpXg3SWWGe4jE17JGMFtxJwccgAAscdeBUukaFo91p8XnSJcyQjyWlhnfaxXjIxipk4qN5scebnaprYmuvCPhezV74lodn8a3auD3zgk5rJ8OeErPWZbjUNHMt7aSK0JNzbKkYfuy5OeOnGevWsaPwzbNIPtF5fTxpz5UsoKt7HAr03QNTuY7aK2h8qKCNQqRxxKqqPQACsjouc0ngPX9KuppdDuDDFIAghYhiFB4G856duPatrS/DurXN7bJqsaG2ikExYgAggY4/wAiu0t55HUFmz+FFxcyRqSuPxFAHnHjuC40Tx3Y68WaDT7lVt5LoIHETYK4IPqMc/WrkHhAFN1lc3E9ux3RyQ3SRgj6Y61b8Ua1O9nNa3EFrcW8ilXimi3Kwrx+8a4sbl4LK9uoIAcrGkvC57DOTTcmyYxUdj//2Q==" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Continental GT 650</div><div class="model-cc">648cc</div><div class="model-tap">View parts →</div></div>
+    <div class="model-card" onclick="goModel('supermeteor650')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilxRigBKKXFTPaTJaR3TIRDI5RWx1I6/wCfrQBBRS4oxQAtFbllpdoj4vVuLhgeVt2CKP8AgRBz+VaaWumWl9stbSOaGSMGaLUWyYzk8qygH9M/WgDkQCSAByeldDaaVLFYhNct762glBa2keJgoI64yOc/h0q41zHa3qGzis7WRDhZbQt8q8ZJc5Oee1S6zql/dWywS34u4YUaQhrhpGUAjn5vUkfrQK9zn9W0qOwihmi1G2ukmJCrHkOuMcsMYHX1NZldB/Zl5q0UEsskVrEI/lefKIegG3aDk8dcdqoXui3drN5eYZlIyskMoZSP5j6EChgjf0mKBoIVlu44kePO0xkh2P8AgP51Pf28RbfbXUUkqgcxkoB22/MBjoDXPRyGOIwnDxqeFcZxQf31vg/IufuoMCgZ1WhXKabdyTyQW07SDZkyqxGSOwOcdvpVbxjeW8t2kRtraO4mYLLNbt8skeQenQY6Zrl1toyT14Bp8tnEkSuC2T70Ab2nvHMzR3rho3VRsPOF4I4HoR+gqhczyxXEiRJ5ig8ZTO32pmnMJysUyhwgwrZIYD0yDRNqU9rIYrYRxRr/AAqv680Af//Z" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Super Meteor 650</div><div class="model-cc">648cc</div><div class="model-tap">View parts →</div></div>
+    <div class="model-card" onclick="goModel('classic650')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilVSxAUEk9AK2dJ8P6lPd2zPYyLCxEm6ZSiMoYA8nigDFoq7rQI1i9zD5OZ3PlD+D5jxVKgAooooAtaZdPY6jbXcRbfBKsg2NtPBzwR0rv9bvBc3/kX9000Rw9yizMzKST8rHrwAB6d60tBe5uBgw29vZRRGVkKKjYH3cKFIGTjGTnmuQuYPL1KK4yv+lAo+4ZBcjjIPuMEVvG0U+V3OeacpLmVt7M2tVj8J3SpGmlsh2AG5tJmDA+pVshqwU8J280pWHXLQKDn97FIrY7HAU10Wn6VqN7aROyQx5Tc7BDhAMn6Dp09/wAKikijgvHg1SBI3VArGRfmXvgHg9CKEo1NtGDcqNr+8jAuPCFxLcCPRbhb+JV/ezOFgVGyePmbn/6/Sq0ng/XkbaNPaQf3onV1/MHFdHFJBNHNDCu2JsGAh9pBGcksM9c4/AVUlVYHKHUZI+4D7Wz75qLQWjNH7R6qxrQ6jdR6YbT7BKxLIWkhVfLcgcHfnhemR/KuV169jSFLWKRXlQqxeP7u7JJx+J4rB86XBHmNg9eaYeTk1CbRbSe56HZ/ERYtFispIZBIvLOnfnJ/WqereJdO1K6N3LPMZJsGQNBkpwAQvzY7da4iikM7S3u/tFnAbSOOV1JDDdhjz12ngjH45q1bX17BFsN3p1uckmOaBJW6+oBx9K4IEjoTRub+8fzoA//Z" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Classic 650</div><div class="model-cc">648cc</div><div class="model-tap">View parts →</div></div>
+    <div class="model-card" onclick="goModel('shotgun650')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2iiigAoord0CznvdL1aGC3hk3JERJI20owfIC+pIyMUAYVFXbjStQto1knsrhEYEqWjPOOtUqANBdE1No962M5GM4C8/l1rVHhQSWsM0Os6fveMNJHMXjKEjpnbg46Gt7TbONHW5vJZJYEUySeXCqpxjjceeemcetXdE0jTtTivHu7qK0uYVLtAMgNgfM2c8jrwOlK9tyrJ7GV4Y8E6VeO8us+I7KGKNgPJgY7398sAAPetvxDpfhPTdN36FJi5gO5XFxuaVum3AOawdO0yaaFZkjgSJF3BJjkOCegxn1HJ4q1cWcgu4IZrFIokEk5uI5BhSiknJAwfoe1G4WsVjqd1p+kalIl05E8T2zwpcEMNxGHYDrjJXnrmuHrq/C1pHPex/bHVUum2vuG4YbgcfXB/Ct6Sz1CFzHd6XbRyoSpX7NE3QkdQPalcHrubyR+FJ5I0i8T3cMgKwiA2rAN8uAMbehHesHWNN0Vb7f/wkmmMpbDxvFKDjJ+XODjj261xK6/qSxCMXLhAMYBI4rOlkeVy7sSxqhXPVfD+oW+jrItvq+gzCdUjkzJtIA/3gvHr3qt4+8S20mlyRW09nJc3CCHday7/kzli2OB0VR7ZrzCigLnbaHcW6wwXCKD5TYd8k+WMAhio5IBGOOma1tV1y0uZ0mlu9PWV4lLsZpPnOPvfKnGfzrzq0vJ7OTfbyMjeoNaJ8Taqcf6QOBj7goC5//9k=" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Shotgun 650</div><div class="model-cc">648cc · Bobber</div><div class="model-tap">View parts →</div></div>
+    <div class="model-card" onclick="goModel('bear650')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3GiiigAqK5mFvA0rdFxn86lrJ1u7RrCaK1voIZ2GFd3+VfqQDinZsV0tzWorzHT/iPLYFrLWQJLmCVhcTKAVALfLt29Vxj5uc5Fej2dyl3axXEYYJIoZdwwcfSm4tJN9RRnGTaXQ4SD4p6bKzKLeTcOgBB5/A1zk3xS1Cxcqv2e6V8tH94MB6MuMg+38652SDSYLCVdN09rWRt8LOJg77GwNxzwp4wSD+VZo1eK182J3RLqE5aaNsiT0Oa0jGNSVtjOUp0o3+I6C++Jev6pYEqsNtHIfkIGCAM54Pr2zWbpGr67fXP2P95cy3BVE86ZUCseQBzj8Kg8KiWa4jkjjFzNHG8ggWLdkEHG4Nx3wPfGK2NA02LSpZp9WR7xXtGFtBPGEEkvGMkZ3dx9abmoW5NSVSlUu6mmpX0bwpf3dvqer3ECslu0iSWiNt3ckMFI/unt37dK9o0vWNJTTLRUvYgohTAaTJxgdc8/nXnWuzXttBpXg3SWWGe4jE17JGMFtxJwccgAAscdeBUukaFo91p8XnSJcyQjyWlhnfaxXjIxipk4qN5scebnaprYmuvCPhezV74lodn8a3auD3zgk5rJ8OeErPWZbjUNHMt7aSK0JNzbKkYfuy5OeOnGevWsaPwzbNIPtF5fTxpz5UsoKt7HAr03QNTuY7aK2h8qKCNQqRxxKqqPQACsjouc0ngPX9KuppdDuDDFIAghYhiFB4G856duPatrS/DurXN7bJqsaG2ikExYgAggY4/wAiu0t55HUFmz+FFxcyRqSuPxFAHnHjuC40Tx3Y68WaDT7lVt5LoIHETYK4IPqMc/WrkHhAFN1lc3E9ux3RyQ3SRgj6Y61b8Ua1O9nNa3EFrcW8ilXimi3Kwrx+8a4sbl4LK9uoIAcrGkvC57DOTTcmyYxUdj//2Q==" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Bear 650</div><div class="model-cc">648cc · Scrambler</div><div class="model-tap">View parts →</div></div>
+    <div class="model-card" onclick="goModel('bullet650')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilxRigBKKXFTPaTJaR3TIRDI5RWx1I6/wCfrQBBRS4oxQAtFbllpdoj4vVuLhgeVt2CKP8AgRBz+VaaWumWl9stbSOaGSMGaLUWyYzk8qygH9M/WgDkQCSAByeldDaaVLFYhNct762glBa2keJgoI64yOc/h0q41zHa3qGzis7WRDhZbQt8q8ZJc5Oee1S6zql/dWywS34u4YUaQhrhpGUAjn5vUkfrQK9zn9W0qOwihmi1G2ukmJCrHkOuMcsMYHX1NZldB/Zl5q0UEsskVrEI/lefKIegG3aDk8dcdqoXui3drN5eYZlIyskMoZSP5j6EChgjf0mKBoIVlu44kePO0xkh2P8AgP51Pf28RbfbXUUkqgcxkoB22/MBjoDXPRyGOIwnDxqeFcZxQf31vg/IufuoMCgZ1WhXKabdyTyQW07SDZkyqxGSOwOcdvpVbxjeW8t2kRtraO4mYLLNbt8skeQenQY6Zrl1toyT14Bp8tnEkSuC2T70Ab2nvHMzR3rho3VRsPOF4I4HoR+gqhczyxXEiRJ5ig8ZTO32pmnMJysUyhwgwrZIYD0yDRNqU9rIYrYRxRr/AAqv680Af//Z" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Bullet 650</div><div class="model-cc">648cc</div><div class="model-tap">View parts →</div></div>
+    <div class="model-group-h">Legacy & Vintage</div>
+    <div class="model-card" onclick="goModel('bullet500')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2ilVSxAUEk9AK2dJ8P6lPd2zPYyLCxEm6ZSiMoYA8nigDFoq7rQI1i9zD5OZ3PlD+D5jxVKgAooooAtaZdPY6jbXcRbfBKsg2NtPBzwR0rv9bvBc3/kX9000Rw9yizMzKST8rHrwAB6d60tBe5uBgw29vZRRGVkKKjYH3cKFIGTjGTnmuQuYPL1KK4yv+lAo+4ZBcjjIPuMEVvG0U+V3OeacpLmVt7M2tVj8J3SpGmlsh2AG5tJmDA+pVshqwU8J280pWHXLQKDn97FIrY7HAU10Wn6VqN7aROyQx5Tc7BDhAMn6Dp09/wAKikijgvHg1SBI3VArGRfmXvgHg9CKEo1NtGDcqNr+8jAuPCFxLcCPRbhb+JV/ezOFgVGyePmbn/6/Sq0ng/XkbaNPaQf3onV1/MHFdHFJBNHNDCu2JsGAh9pBGcksM9c4/AVUlVYHKHUZI+4D7Wz75qLQWjNH7R6qxrQ6jdR6YbT7BKxLIWkhVfLcgcHfnhemR/KuV169jSFLWKRXlQqxeP7u7JJx+J4rB86XBHmNg9eaYeTk1CbRbSe56HZ/ERYtFispIZBIvLOnfnJ/WqereJdO1K6N3LPMZJsGQNBkpwAQvzY7da4iikM7S3u/tFnAbSOOV1JDDdhjz12ngjH45q1bX17BFsN3p1uckmOaBJW6+oBx9K4IEjoTRub+8fzoA//Z" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Bullet 500cc</div><div class="model-cc">Discontinued</div><div class="model-tap">View parts →</div></div>
+    <div class="model-card" onclick="goModel('scram411')"><div class="model-icon">🏔️</div><div class="model-name">Scram 411</div><div class="model-cc">Discontinued</div><div class="model-tap">View parts →</div></div>
+    <div class="model-card" onclick="goModel('vintage')"><div class="model-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAsACwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2iiigAoord0CznvdL1aGC3hk3JERJI20owfIC+pIyMUAYVFXbjStQto1knsrhEYEqWjPOOtUqANBdE1No962M5GM4C8/l1rVHhQSWsM0Os6fveMNJHMXjKEjpnbg46Gt7TbONHW5vJZJYEUySeXCqpxjjceeemcetXdE0jTtTivHu7qK0uYVLtAMgNgfM2c8jrwOlK9tyrJ7GV4Y8E6VeO8us+I7KGKNgPJgY7398sAAPetvxDpfhPTdN36FJi5gO5XFxuaVum3AOawdO0yaaFZkjgSJF3BJjkOCegxn1HJ4q1cWcgu4IZrFIokEk5uI5BhSiknJAwfoe1G4WsVjqd1p+kalIl05E8T2zwpcEMNxGHYDrjJXnrmuHrq/C1pHPex/bHVUum2vuG4YbgcfXB/Ct6Sz1CFzHd6XbRyoSpX7NE3QkdQPalcHrubyR+FJ5I0i8T3cMgKwiA2rAN8uAMbehHesHWNN0Vb7f/wkmmMpbDxvFKDjJ+XODjj261xK6/qSxCMXLhAMYBI4rOlkeVy7sSxqhXPVfD+oW+jrItvq+gzCdUjkzJtIA/3gvHr3qt4+8S20mlyRW09nJc3CCHday7/kzli2OB0VR7ZrzCigLnbaHcW6wwXCKD5TYd8k+WMAhio5IBGOOma1tV1y0uZ0mlu9PWV4lLsZpPnOPvfKnGfzrzq0vJ7OTfbyMjeoNaJ8Taqcf6QOBj7goC5//9k=" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;margin:0 auto;"></div><div class="model-name">Old Bullet / Vintage</div><div class="model-cc">Legacy</div><div class="model-tap">View parts →</div></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="fu">
+  <div class="rh"><p class="eyebrow">Customer Reviews</p><h2 class="sec-title light">What RE Riders Say</h2><div class="gold-line c"></div></div>
+  <div class="reviews-grid">
+    <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"SKS is the best RE spare parts shop I have found. Got my Classic 350 piston kit same day at a price better than any other shop. Genuine part, no questions asked!"</p><div class="rev-name">Karthik Raja</div><div class="rev-loc">Classic 350 Owner, Chennai</div></div>
+    <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Been buying RE parts from SKS for 6 years. They always have what I need in stock. Their knowledge about which part fits which model is simply unbeatable."</p><div class="rev-name">Murugan Mech</div><div class="rev-loc">RE Mechanic, Coimbatore</div></div>
+    <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Genuine parts, fair pricing, and the team actually explains what you are buying instead of just pushing a sale. Got my Bullet 350 clutch plates here and the bike runs smoother than ever. This is the only place I trust for Royal Enfield spares."</p><div class="rev-name">Mohamed Rasheit S</div><div class="rev-loc">Bullet 350 Owner, Madurai</div></div>
+    <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Called at 10AM for my Himalayan front fork seal — it was ready by 12PM. SKS Auto Spares is the go-to for all Royal Enfield parts in Tamil Nadu."</p><div class="rev-name">Arun Vijay</div><div class="rev-loc">Himalayan 450 Rider</div></div>
+    <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Honest pricing, no fake parts, genuine service. Got my old Bullet 500cc crankcase from SKS when no one else could source it. Absolute legends!"</p><div class="rev-name">Venkatesh T.</div><div class="rev-loc">Bullet 500 Owner, Madurai</div></div>
+    <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"I manage a fleet of RE bikes for tours. SKS Auto Spares is my only supplier — the best bulk pricing and parts are always 100% genuine. Highly recommended."</p><div class="rev-name">Suresh Kumar</div><div class="rev-loc">Tour Operator, Ooty</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="fu">
+  <div>
+    <p class="eyebrow">Contact Us</p>
+    <h2 class="sec-title light">Find Your RE<br/>Part Today</h2>
+    <div class="gold-line"></div>
+    <div>
+      <a href="tel:9003400786" class="ph-card"><div class="ph-circle">📞</div><div><div class="ph-l">For Details</div><div class="ph-nbig">90034 00786</div></div></a>
+    </div>
+    <div class="ci"><div class="ci-icon">📍</div><div><div class="ci-lbl">Location</div><div class="ci-val">SKS Auto Spares,<br/>396, Kottar-Parvathipuram Rd, Chetti Kulam,<br/>Nagercoil, Tamil Nadu 629002<br/><a href="https://maps.app.goo.gl/x27RYnUFvM2FVudt9" target="_blank" rel="noopener" style="color:#D4AF37;text-decoration:underline;">Click Here</a></div></div></div>
+    <div class="ci"><div class="ci-icon">🕐</div><div><div class="ci-lbl">Working Hours</div><div class="ci-val">Monday – Saturday: 9:00 AM – 8:30 PM<br/>Sunday: 10:00 AM – 3:00 PM</div></div></div>
+    <div class="ci"><div class="ci-icon">🚚</div><div><div class="ci-lbl">Delivery</div><div class="ci-val"><strong style="color:#fff;">Same Day:</strong> Kanyakumari & Chennai districts*<br/><strong style="color:#fff;">Other Districts:</strong> 1–2 Days<br/><span style="font-size:12px;color:rgba(255,255,255,0.5);">*Timing may vary based on availability & location</span></div></div></div>
+  </div>
+  <div>
+    <div class="cf">
+      <h3 style="color:#fff;font-family:'Bebas Neue',sans-serif;letter-spacing:1px;font-size:24px;margin-bottom:16px;">Send Us Your Enquiry</h3>
+      <div class="cf-row"><input type="text" id="enq-name" placeholder="Your Name"/><input type="tel" id="enq-mobile" placeholder="Mobile Number"/></div>
+      <input type="text" id="enq-model" placeholder="Your RE Model"/>
+      <select id="enq-cat"><option value="" disabled selected>Part Category</option><option>Engine Parts</option><option>Brake System</option><option>Electrical</option><option>Suspension</option><option>Transmission / Clutch</option><option>Wiring & Cables</option><option>Body & Frame</option><option>Other</option></select>
+      <input type="text" id="enq-part" placeholder="Part Name (if known)"/>
+      <textarea id="enq-msg" placeholder="Describe your requirement..."></textarea>
+      <button type="button" onclick="sendEnquiry()">Send Enquiry</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div>
+      <a href="#hero" class="ft-logo">SKS <span class="g">Auto</span> Spares</a>
+      <p class="ft-desc">Tamil Nadu's trusted Royal Enfield spare parts specialist. Genuine parts, expert knowledge, unbeatable prices. Serving RE riders for over 40 years.</p>
+      <div class="ft-phones"><a href="tel:9003400786" class="ft-ph">📞 90034 00786</a></div>
+    </div>
+    <div class="ft-col"><h4>Navigate</h4><ul><li><a href="#about">About Us</a></li><li><a href="#products">Parts & Prices</a></li><li><a href="#models-sec">RE Models</a></li><li><a href="#whyus">Why Choose Us</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#contact">Contact</a></li></ul></div>
+  </div>
+  <div class="ft-bottom"><p>© 2024 SKS Auto Spares. All Rights Reserved.</p><p>📞 90034 00786</p></div>
+</footer>
+
+<div id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<script>
+function openContactChoice(e,productName){
+  if(e)e.preventDefault();
+  var wa=document.getElementById('ccWaLink');
+  if(productName){
+    var text='Hi, I am interested in *'+productName+'*. Please share the price and availability.';
+    wa.href='https://wa.me/919003400786?text='+encodeURIComponent(text);
+  }else{
+    wa.href='https://wa.me/919003400786';
+  }
+  document.getElementById('ccModal').classList.add('show');
+}
+function closeContactChoice(){ document.getElementById('ccModal').classList.remove('show'); }
+</script>
+<script>
+function sendEnquiry(){
+  var name=document.getElementById('enq-name').value.trim();
+  var mobile=document.getElementById('enq-mobile').value.trim();
+  var model=document.getElementById('enq-model').value.trim();
+  var cat=document.getElementById('enq-cat').value.trim();
+  var part=document.getElementById('enq-part').value.trim();
+  var msg=document.getElementById('enq-msg').value.trim();
+  if(!name||!mobile){ alert('Please enter your Name and Mobile Number'); return; }
+  var text='*New Enquiry - SKS Auto Spares*%0A'
+    +'Name: '+encodeURIComponent(name)+'%0A'
+    +'Mobile: '+encodeURIComponent(mobile)+'%0A'
+    +'RE Model: '+encodeURIComponent(model||'-')+'%0A'
+    +'Category: '+encodeURIComponent(cat||'-')+'%0A'
+    +'Part Name: '+encodeURIComponent(part||'-')+'%0A'
+    +'Requirement: '+encodeURIComponent(msg||'-');
+  window.open('https://wa.me/919003400786?text='+text,'_blank');
+}
+</script>
+<script>
+/* ===== PARTS DATA ===== */
+var PD=[
+{c:'engine',m:'classic350 bullet350 meteor350',n:'Piston Kit (Standard)',p:'2,850',a:'In Stock'},
+{c:'engine',m:'classic350 bullet350',n:'Piston Kit (Oversize 0.25mm)',p:'3,100',a:'Limited'},
+{c:'engine',m:'interceptor650 gt650 supermeteor650 classic650 shotgun650 bear650 bullet650',n:'Piston Kit (650 Twin)',p:'6,200',a:'In Stock'},
+{c:'engine',m:'classic350 bullet350 meteor350 hunter350',n:'Gasket Full Set (350)',p:'1,200',a:'In Stock'},
+{c:'engine',m:'interceptor650 gt650 supermeteor650 classic650 shotgun650 bear650 bullet650',n:'Gasket Full Set (650 Twin)',p:'2,100',a:'In Stock'},
+{c:'engine',m:'himalayan450 guerrilla450',n:'Gasket Full Set (450)',p:'1,750',a:'In Stock'},
+{c:'engine',m:'classic350 bullet500',n:'Cylinder Head Assembly',p:'8,500',a:'Limited'},
+{c:'engine',m:'himalayan450 guerrilla450',n:'Cylinder Head Assembly (450)',p:'9,200',a:'Limited'},
+{c:'engine',m:'classic350 bullet350',n:'Cylinder Liner',p:'1,950',a:'In Stock'},
+{c:'engine',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Oil Filter',p:'280',a:'In Stock'},
+{c:'engine',m:'interceptor650 gt650 supermeteor650 classic650 shotgun650 bear650 bullet650',n:'Oil Filter (650 Spin-On)',p:'420',a:'In Stock'},
+{c:'engine',m:'classic350 bullet350 meteor350',n:'Air Filter Element (350)',p:'450',a:'In Stock'},
+{c:'engine',m:'himalayan450 guerrilla450',n:'Air Filter Element (450)',p:'520',a:'In Stock'},
+{c:'engine',m:'interceptor650 gt650 supermeteor650 classic650 shotgun650 bear650 bullet650',n:'Air Filter Element (650)',p:'680',a:'In Stock'},
+{c:'engine',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Spark Plug (NGK)',p:'320',a:'In Stock'},
+{c:'engine',m:'bullet350 classic350',n:'Crankcase Assembly',p:'11,500',a:'On Order'},
+{c:'engine',m:'bullet350 classic350',n:'Crankshaft Assembly',p:'13,800',a:'On Order'},
+{c:'engine',m:'bullet350 classic350 meteor350',n:'Connecting Rod Kit',p:'4,200',a:'Limited'},
+{c:'engine',m:'meteor350 hunter350',n:'Timing Chain Kit (350)',p:'1,850',a:'In Stock'},
+{c:'engine',m:'bullet650 classic650 interceptor650 gt650 supermeteor650 shotgun650 bear650',n:'Timing Chain Kit (650)',p:'2,650',a:'In Stock'},
+{c:'engine',m:'himalayan450',n:'Camshaft (450)',p:'3,950',a:'Limited'},
+{c:'engine',m:'interceptor650 gt650 supermeteor650',n:'Camshaft (650 Twin)',p:'5,200',a:'Limited'},
+{c:'engine',m:'classic350 bullet350 meteor350',n:'Valve Set (Inlet & Exhaust)',p:'1,450',a:'In Stock'},
+{c:'engine',m:'himalayan450 guerrilla450',n:'Valve Set (450)',p:'1,850',a:'In Stock'},
+{c:'engine',m:'classic350 bullet350',n:'Valve Spring Kit',p:'890',a:'In Stock'},
+{c:'engine',m:'classic350 bullet350 meteor350',n:'Tappet / Rocker Arm Assembly',p:'1,650',a:'In Stock'},
+{c:'engine',m:'classic350 bullet350 meteor350',n:'Oil Pump Assembly',p:'2,350',a:'In Stock'},
+{c:'engine',m:'himalayan450 guerrilla450',n:'Oil Pump Assembly (450)',p:'2,750',a:'Limited'},
+{c:'engine',m:'classic350 bullet350 meteor350 hunter350',n:'Cylinder Head Gasket',p:'650',a:'In Stock'},
+{c:'engine',m:'bullet650 classic650',n:'Twin Cylinder Head Gasket',p:'2,950',a:'In Stock'},
+{c:'engine',m:'bullet500 vintage',n:'500cc Piston & Ring Set',p:'3,600',a:'Limited'},
+{c:'engine',m:'classic350 bullet350 meteor350',n:'Tappet Cover Gasket',p:'220',a:'In Stock'},
+{c:'engine',m:'guerrilla450',n:'Balancer Shaft Assembly',p:'4,400',a:'On Order'},
+{c:'engine',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Engine Oil 15W50 (1L)',p:'450',a:'In Stock'},
+{c:'engine',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Engine Mounting Bolt Kit',p:'380',a:'In Stock'},
+{c:'brake',m:'classic350 bullet350 meteor350 hunter350',n:'Front Brake Pads (350)',p:'580',a:'In Stock'},
+{c:'brake',m:'himalayan450 guerrilla450',n:'Front Brake Pads (450)',p:'650',a:'In Stock'},
+{c:'brake',m:'interceptor650 gt650 supermeteor650 classic650 shotgun650 bear650 bullet650',n:'Front Brake Pads (650)',p:'820',a:'In Stock'},
+{c:'brake',m:'classic350 bullet350 meteor350 hunter350',n:'Rear Brake Pads (350)',p:'480',a:'In Stock'},
+{c:'brake',m:'himalayan450 guerrilla450',n:'Rear Brake Pads (450)',p:'540',a:'In Stock'},
+{c:'brake',m:'interceptor650 gt650 supermeteor650 classic650 shotgun650 bear650 bullet650',n:'Rear Brake Pads (650)',p:'690',a:'In Stock'},
+{c:'brake',m:'classic350 bullet350 meteor350',n:'Brake Disc Front (300mm)',p:'1,650',a:'In Stock'},
+{c:'brake',m:'himalayan450 guerrilla450',n:'Brake Disc Front (450)',p:'2,150',a:'In Stock'},
+{c:'brake',m:'interceptor650 gt650 supermeteor650',n:'Brake Disc Front (650 Twin)',p:'2,850',a:'In Stock'},
+{c:'brake',m:'classic350 bullet350 meteor350',n:'Brake Disc Rear',p:'1,450',a:'In Stock'},
+{c:'brake',m:'himalayan450 meteor350',n:'Brake Caliper (Front)',p:'3,200',a:'Limited'},
+{c:'brake',m:'classic350 bullet350',n:'Brake Caliper (Rear)',p:'2,650',a:'Limited'},
+{c:'brake',m:'interceptor650 gt650 supermeteor650',n:'Twin Disc Brake Set (Front)',p:'4,600',a:'In Stock'},
+{c:'brake',m:'classic350 bullet350 meteor350',n:'Master Cylinder (Front)',p:'1,850',a:'In Stock'},
+{c:'brake',m:'classic350 bullet350',n:'Master Cylinder (Rear)',p:'1,450',a:'In Stock'},
+{c:'brake',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Brake Lever Assembly',p:'420',a:'In Stock'},
+{c:'brake',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Brake Hose / Line',p:'680',a:'In Stock'},
+{c:'brake',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Brake Fluid DOT4 (500ml)',p:'250',a:'In Stock'},
+{c:'brake',m:'himalayan450 guerrilla450',n:'ABS Sensor Ring',p:'950',a:'Limited'},
+{c:'brake',m:'classic350 bullet350 meteor350',n:'Brake Pedal Assembly',p:'780',a:'In Stock'},
+{c:'electrical',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Battery 12V / 9Ah',p:'2,400',a:'In Stock'},
+{c:'electrical',m:'interceptor650 gt650 supermeteor650 classic650 shotgun650 bear650 bullet650',n:'Battery 12V / 14Ah (650)',p:'3,600',a:'In Stock'},
+{c:'electrical',m:'classic350',n:'USB Type-C Charging Port (2026 Classic 350)',p:'950',a:'In Stock'},
+{c:'electrical',m:'meteor350 hunter350',n:'Headlight Assembly LED (350)',p:'3,800',a:'In Stock'},
+{c:'electrical',m:'himalayan450 guerrilla450',n:'Headlight Assembly LED (450)',p:'4,200',a:'In Stock'},
+{c:'electrical',m:'interceptor650 gt650 classic650 shotgun650 bear650 bullet650',n:'Headlight Assembly (650)',p:'3,950',a:'In Stock'},
+{c:'electrical',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Tail Light LED Assembly',p:'950',a:'In Stock'},
+{c:'electrical',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Turn Signal / Indicator Set',p:'650',a:'In Stock'},
+{c:'electrical',m:'classic350',n:'Speedometer / Instrument Cluster',p:'4,500',a:'Limited'},
+{c:'electrical',m:'himalayan450 guerrilla450',n:'TFT Display Unit (450)',p:'5,200',a:'Limited'},
+{c:'electrical',m:'interceptor650 gt650 supermeteor650 classic650 shotgun650 bear650 bullet650',n:'Analog-Digital Console (650)',p:'4,800',a:'In Stock'},
+{c:'electrical',m:'classic350 bullet350 meteor350 hunter350',n:'Starter Motor (350)',p:'3,200',a:'In Stock'},
+{c:'electrical',m:'interceptor650 gt650 supermeteor650 classic650 shotgun650 bear650 bullet650',n:'Starter Motor (650)',p:'4,100',a:'In Stock'},
+{c:'electrical',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Starter Relay',p:'380',a:'In Stock'},
+{c:'electrical',m:'classic350 bullet350 meteor350',n:'Ignition Coil (350)',p:'720',a:'In Stock'},
+{c:'electrical',m:'himalayan450 guerrilla450',n:'Ignition Coil (450)',p:'890',a:'In Stock'},
+{c:'electrical',m:'classic350 bullet350 meteor350 hunter350',n:'CDI / ECU Unit (350)',p:'3,200',a:'Limited'},
+{c:'electrical',m:'himalayan450 guerrilla450',n:'ECU Unit (450 FI)',p:'6,500',a:'On Order'},
+{c:'electrical',m:'classic350 bullet350',n:'Voltage Regulator / Rectifier',p:'950',a:'In Stock'},
+{c:'electrical',m:'interceptor650 gt650 supermeteor650',n:'Rectifier (650 Twin)',p:'1,250',a:'In Stock'},
+{c:'electrical',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Horn Assembly',p:'420',a:'In Stock'},
+{c:'electrical',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Kill Switch / Combination Switch',p:'650',a:'In Stock'},
+{c:'electrical',m:'himalayan450',n:'Side Stand Safety Sensor',p:'480',a:'Limited'},
+{c:'electrical',m:'classic350 bullet350 meteor350',n:'Fuel Level Sensor',p:'890',a:'In Stock'},
+{c:'electrical',m:'himalayan450 guerrilla450',n:'USB-C Charging Port Module',p:'650',a:'In Stock'},
+{c:'electrical',m:'himalayan450',n:'Bluetooth / Tripper Module',p:'2,800',a:'Limited'},
+{c:'electrical',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Neutral Switch',p:'320',a:'In Stock'},
+{c:'electrical',m:'vintage bullet500 classic350 bullet350',n:'Headlight Bulb (H4)',p:'180',a:'In Stock'},
+{c:'electrical',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Main Fuse Box',p:'420',a:'In Stock'},
+{c:'electrical',m:'classic350 bullet350 meteor350',n:'Stator / Alternator Coil',p:'1,950',a:'In Stock'},
+{c:'electrical',m:'vintage',n:'Vintage Magneto Assembly',p:'4,200',a:'On Order'},
+{c:'electrical',m:'vintage',n:'Ammeter (Vintage)',p:'1,650',a:'Limited'},
+{c:'body',m:'classic350 bullet350 meteor350',n:'Side Stand (350)',p:'480',a:'In Stock'},
+{c:'body',m:'himalayan450 guerrilla450',n:'Side Stand (450)',p:'560',a:'In Stock'},
+{c:'body',m:'classic350 bullet350',n:'Center Stand Assembly',p:'1,850',a:'In Stock'},
+{c:'body',m:'classic350 bullet350',n:'Leg Guard (Chrome)',p:'2,400',a:'In Stock'},
+{c:'body',m:'himalayan450 guerrilla450',n:'Crash Guard / Engine Guard',p:'2,950',a:'In Stock'},
+{c:'body',m:'interceptor650 gt650 supermeteor650 bear650',n:'Crash Guard (650)',p:'3,650',a:'In Stock'},
+{c:'body',m:'classic350 meteor350',n:'Alloy Wheel (Front)',p:'4,200',a:'Limited'},
+{c:'body',m:'classic350 meteor350',n:'Alloy Wheel (Rear)',p:'4,500',a:'Limited'},
+{c:'body',m:'vintage bullet500 bullet350',n:'Spoke Wheel Set (Front)',p:'3,200',a:'In Stock'},
+{c:'body',m:'classic350 bullet350',n:'Seat Cover (Original)',p:'1,100',a:'In Stock'},
+{c:'body',m:'himalayan450 guerrilla450',n:'Seat Assembly (Dual)',p:'3,800',a:'In Stock'},
+{c:'body',m:'interceptor650 gt650 supermeteor650 classic650 shotgun650 bear650 bullet650',n:'Seat Assembly (650)',p:'4,200',a:'In Stock'},
+{c:'body',m:'classic350 bullet350 meteor350',n:'Fuel Tank Assembly',p:'8,500',a:'On Order'},
+{c:'body',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Fuel Tank Cap',p:'650',a:'In Stock'},
+{c:'body',m:'bullet350 classic350',n:'Exhaust Silencer',p:'4,800',a:'In Stock'},
+{c:'body',m:'classic650 shotgun650',n:'Dual Exhaust Silencer Set',p:'12,500',a:'On Order'},
+{c:'body',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Exhaust Heat Shield',p:'650',a:'In Stock'},
+{c:'body',m:'himalayan450 guerrilla450',n:'Skid Plate / Bash Guard',p:'2,800',a:'In Stock'},
+{c:'body',m:'classic350 bullet350 meteor350',n:'Mudguard Front',p:'1,450',a:'In Stock'},
+{c:'body',m:'classic350 bullet350 meteor350',n:'Mudguard Rear',p:'1,250',a:'In Stock'},
+{c:'body',m:'classic350 bullet350',n:'Handlebar Assembly',p:'1,850',a:'In Stock'},
+{c:'body',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Handlebar Grip Set',p:'350',a:'In Stock'},
+{c:'body',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Mirror Set',p:'650',a:'In Stock'},
+{c:'body',m:'classic350 bullet350 meteor350',n:'Footrest Assembly (Front)',p:'890',a:'In Stock'},
+{c:'body',m:'classic350 bullet350',n:'Pillion Footrest Set',p:'750',a:'In Stock'},
+{c:'body',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Number Plate Bracket',p:'280',a:'In Stock'},
+{c:'body',m:'vintage bullet350',n:'Saree Guard',p:'650',a:'In Stock'},
+{c:'body',m:'classic350 bullet350',n:'Rear Carrier',p:'1,450',a:'In Stock'},
+{c:'body',m:'himalayan450',n:'Windscreen (450 Touring)',p:'2,200',a:'In Stock'},
+{c:'body',m:'himalayan450 guerrilla450',n:'Radiator Guard (450)',p:'1,650',a:'In Stock'},
+{c:'body',m:'classic350 bullet350',n:'Tank Badge Set',p:'380',a:'In Stock'},
+{c:'body',m:'classic350 bullet350 meteor350',n:'Side Panel Set',p:'950',a:'In Stock'},
+{c:'body',m:'classic350 bullet350 meteor350',n:'Chain Cover',p:'650',a:'In Stock'},
+{c:'suspension',m:'classic350 bullet350',n:'Rear Shock Absorber (Pair)',p:'3,800',a:'In Stock'},
+{c:'suspension',m:'himalayan450 guerrilla450',n:'Rear Shock Absorber (450 Mono)',p:'4,500',a:'In Stock'},
+{c:'suspension',m:'interceptor650 gt650 supermeteor650 classic650 shotgun650 bear650 bullet650',n:'Rear Shock Absorber (650)',p:'5,200',a:'In Stock'},
+{c:'suspension',m:'classic350 bullet350 meteor350',n:'Front Fork Assembly (350)',p:'7,800',a:'On Order'},
+{c:'suspension',m:'himalayan450',n:'Front Fork Assembly (Showa)',p:'9,800',a:'On Order'},
+{c:'suspension',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Front Fork Oil Seal Kit',p:'650',a:'In Stock'},
+{c:'suspension',m:'classic350 bullet350',n:'Front Fork Spring Set',p:'1,450',a:'In Stock'},
+{c:'suspension',m:'classic350 meteor350 bullet350',n:'Steering Bearing Set',p:'480',a:'In Stock'},
+{c:'suspension',m:'classic350 bullet350',n:'Swing Arm Assembly',p:'3,650',a:'Limited'},
+{c:'suspension',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Swing Arm Bush Kit',p:'420',a:'In Stock'},
+{c:'suspension',m:'himalayan450 guerrilla450',n:'Linkage Rod (Monoshock)',p:'1,250',a:'In Stock'},
+{c:'suspension',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Fork Oil 10W (1L)',p:'320',a:'In Stock'},
+{c:'suspension',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Wheel Bearing Set (Front)',p:'580',a:'In Stock'},
+{c:'suspension',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Wheel Bearing Set (Rear)',p:'620',a:'In Stock'},
+{c:'suspension',m:'classic350 bullet350 meteor350',n:'Suspension Bush Kit',p:'450',a:'In Stock'},
+{c:'suspension',m:'vintage bullet350',n:'Fork Gaiter / Boot',p:'380',a:'In Stock'},
+{c:'suspension',m:'classic350 bullet350',n:'Triple Clamp Assembly',p:'2,650',a:'Limited'},
+{c:'suspension',m:'himalayan450',n:'Steering Stem Bearing',p:'890',a:'In Stock'},
+{c:'transmission',m:'bullet350 classic350 bullet500',n:'Clutch Plate Set',p:'2,200',a:'In Stock'},
+{c:'transmission',m:'bullet650 classic650 interceptor650 gt650 supermeteor650 shotgun650 bear650',n:'Clutch Plate Set (650 Twin)',p:'3,800',a:'In Stock'},
+{c:'wiring',m:'classic350 bullet350 meteor350',n:'Clutch Cable',p:'450',a:'In Stock'},
+{c:'transmission',m:'classic350 bullet350',n:'Clutch Cover',p:'1,850',a:'In Stock'},
+{c:'transmission',m:'classic350',n:'Assist & Slipper Clutch Kit (2026 Classic 350)',p:'6,800',a:'Limited'},
+{c:'transmission',m:'classic350 bullet350 meteor350 hunter350',n:'Chain & Sprocket Kit (350)',p:'1,650',a:'In Stock'},
+{c:'transmission',m:'himalayan450 guerrilla450',n:'Chain & Sprocket Kit (450)',p:'2,150',a:'In Stock'},
+{c:'transmission',m:'interceptor650 gt650 supermeteor650 classic650 shotgun650 bear650 bullet650',n:'Chain & Sprocket Kit (650)',p:'2,850',a:'In Stock'},
+{c:'transmission',m:'bullet350 classic350',n:'Gear Box Assembly (350)',p:'9,500',a:'On Order'},
+{c:'transmission',m:'bullet650 classic650 interceptor650',n:'6-Speed Gearbox Assembly (650)',p:'15,800',a:'On Order'},
+{c:'transmission',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Gear Shift Lever',p:'480',a:'In Stock'},
+{c:'transmission',m:'classic350 bullet350',n:'Gear Shift Fork Set',p:'1,450',a:'Limited'},
+{c:'transmission',m:'classic350 bullet350',n:'Primary Drive Chain',p:'950',a:'In Stock'},
+{c:'transmission',m:'classic350 bullet350 meteor350',n:'Output Shaft Seal',p:'280',a:'In Stock'},
+{c:'transmission',m:'classic350 bullet350',n:'Input Shaft Bearing',p:'650',a:'In Stock'},
+{c:'transmission',m:'classic350 bullet350',n:'Clutch Basket Assembly',p:'2,950',a:'Limited'},
+{c:'transmission',m:'classic350 bullet350 meteor350',n:'Sprocket Front 15T',p:'420',a:'In Stock'},
+{c:'transmission',m:'classic350 bullet350 meteor350',n:'Sprocket Rear 43T',p:'950',a:'In Stock'},
+{c:'transmission',m:'classic350 bullet350 meteor350 himalayan450 hunter350 interceptor650 gt650 supermeteor650 guerrilla450 scram411 bullet500 vintage classic650 shotgun650 bear650 bullet650',n:'Chain Adjuster Kit',p:'320',a:'In Stock'},
+{c:'transmission',m:'himalayan450 guerrilla450',n:'Drive Sprocket (450)',p:'680',a:'In Stock'},
+
+/* OLD BULLET / VINTAGE — NUTS, BOLTS, CABLES & HARDWARE */
+{c:'engine',m:'vintage bullet500',n:'Wheel Axle Nut',p:'60',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Engine Mounting Bolt Set',p:'220',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Cylinder Head Bolt Set',p:'380',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Crankcase Bolt Kit',p:'260',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Sump Plate Bolt Set',p:'150',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Drain Plug Bolt',p:'80',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Cylinder Base Gasket',p:'220',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Cylinder Head Gasket',p:'280',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Points Cover Gasket',p:'90',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Timing Cover Gasket',p:'140',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Oil Tank Gasket',p:'160',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Rocker Box Gasket Set',p:'320',a:'Limited'},
+{c:'engine',m:'vintage bullet500',n:'Piston & Ring Set (Iron Barrel)',p:'2,650',a:'Limited'},
+{c:'engine',m:'vintage bullet500',n:'Valve Set (Inlet & Exhaust)',p:'1,150',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Rocker Arm Kit',p:'980',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Push Rod Set',p:'650',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Tappet Set',p:'420',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Cylinder Barrel (Cast Iron)',p:'7,200',a:'On Order'},
+{c:'engine',m:'vintage bullet500',n:'Crankshaft Assembly (Old Type)',p:'9,800',a:'On Order'},
+{c:'engine',m:'vintage bullet500',n:'Big End Bearing',p:'950',a:'Limited'},
+{c:'engine',m:'vintage bullet500',n:'Small End Bush',p:'180',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Kick Start Shaft',p:'720',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Kick Start Ratchet Set',p:'480',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Primary Chain',p:'560',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Primary Chain Cover',p:'1,450',a:'In Stock'},
+{c:'engine',m:'vintage bullet500',n:'Oil Pump (Old Type)',p:'1,650',a:'Limited'},
+{c:'engine',m:'vintage bullet500',n:'Timing Gear Set',p:'1,850',a:'Limited'},
+{c:'wiring',m:'vintage bullet500',n:'Decompression Cable',p:'240',a:'In Stock'},
+{c:'wiring',m:'vintage bullet500',n:'Choke Cable',p:'220',a:'In Stock'},
+{c:'wiring',m:'vintage bullet500',n:'Accelerator (Throttle) Cable',p:'260',a:'In Stock'},
+{c:'wiring',m:'vintage bullet500',n:'Clutch Cable (Old Bullet)',p:'250',a:'In Stock'},
+{c:'wiring',m:'vintage bullet500',n:'Speedometer Cable',p:'280',a:'In Stock'},
+{c:'transmission',m:'vintage bullet500',n:'Clutch Plate Set (Old Type)',p:'2,100',a:'In Stock'},
+{c:'transmission',m:'vintage bullet500',n:'Clutch Spring Set',p:'320',a:'In Stock'},
+{c:'transmission',m:'vintage bullet500',n:'Gear Lever',p:'450',a:'In Stock'},
+{c:'transmission',m:'vintage bullet500',n:'Gear Change Shaft',p:'680',a:'In Stock'},
+{c:'transmission',m:'vintage bullet500',n:'Kick Start Return Spring',p:'150',a:'In Stock'},
+{c:'transmission',m:'vintage bullet500',n:'Gear Box Sprocket',p:'580',a:'In Stock'},
+{c:'transmission',m:'vintage bullet500',n:'Nut & Bolt Fastener Kit (Full Bike)',p:'950',a:'In Stock'},
+{c:'brake',m:'vintage bullet500',n:'Front Brake Shoe (Drum)',p:'420',a:'In Stock'},
+{c:'brake',m:'vintage bullet500',n:'Rear Brake Shoe (Drum)',p:'420',a:'In Stock'},
+{c:'brake',m:'vintage bullet500',n:'Brake Drum Front',p:'2,200',a:'Limited'},
+{c:'brake',m:'vintage bullet500',n:'Brake Drum Rear',p:'2,400',a:'Limited'},
+{c:'brake',m:'vintage bullet500',n:'Brake Rod (Old Type)',p:'180',a:'In Stock'},
+{c:'brake',m:'vintage bullet500',n:'Brake Pedal',p:'450',a:'In Stock'},
+{c:'wiring',m:'vintage bullet500',n:'Front Brake Cable',p:'230',a:'In Stock'},
+{c:'electrical',m:'vintage bullet500',n:'Magneto Points Set',p:'380',a:'In Stock'},
+{c:'electrical',m:'vintage bullet500',n:'Condenser',p:'150',a:'In Stock'},
+{c:'electrical',m:'vintage bullet500',n:'Ignition Coil (6V)',p:'420',a:'In Stock'},
+{c:'electrical',m:'vintage bullet500',n:'Dynamo Assembly',p:'3,200',a:'On Order'},
+{c:'electrical',m:'vintage bullet500',n:'Voltage Regulator (6V)',p:'650',a:'Limited'},
+{c:'electrical',m:'vintage bullet500',n:'Headlamp Bulb (6V/12V)',p:'90',a:'In Stock'},
+{c:'electrical',m:'vintage bullet500',n:'Pilot Lamp Bulb',p:'60',a:'In Stock'},
+{c:'electrical',m:'vintage bullet500',n:'Horn (Vintage Type)',p:'480',a:'In Stock'},
+{c:'electrical',m:'vintage bullet500',n:'Battery 6V',p:'1,850',a:'Limited'},
+{c:'suspension',m:'vintage bullet500',n:'Front Fork Spring',p:'620',a:'In Stock'},
+{c:'suspension',m:'vintage bullet500',n:'Rear Shocker (Old Type)',p:'1,450',a:'In Stock'},
+{c:'suspension',m:'vintage bullet500',n:'Wheel Rim (40 Hole)',p:'2,650',a:'Limited'},
+{c:'suspension',m:'vintage bullet500',n:'Spokes Set (Full Wheel)',p:'850',a:'In Stock'},
+{c:'suspension',m:'vintage bullet500',n:'Wheel Bearing Set',p:'480',a:'In Stock'},
+{c:'suspension',m:'vintage bullet500',n:'Fork Oil Seal Set',p:'320',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Petrol Tank (Old Shape)',p:'6,800',a:'On Order'},
+{c:'body',m:'vintage bullet500',n:'Toolbox',p:'1,250',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Seat (Original Type)',p:'1,850',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Mudguard Front (Old Style)',p:'1,650',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Mudguard Rear (Old Style)',p:'1,750',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Silencer (Old Type)',p:'2,400',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Exhaust Pipe',p:'1,950',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Kick Start Lever',p:'480',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Center Stand (Old Type)',p:'1,150',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Side Stand (Old Type)',p:'480',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Chain Guard',p:'980',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Tank Badge (Vintage)',p:'350',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Handlebar Grip Set',p:'220',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Footrest Set',p:'380',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Handlebar Clamp Bolt Set',p:'160',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Side Panel Screw Set',p:'90',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Number Plate Bolt Set',p:'70',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Seat Bolt & Washer Set',p:'80',a:'In Stock'},
+{c:'body',m:'vintage bullet500',n:'Tank Mounting Bolt Kit',p:'120',a:'In Stock'},
+/* WIRING & CABLE KITS — ALL MODELS */
+{c:'wiring',m:'classic350',n:'Complete Wiring Harness Kit (Classic 350)',p:'1,850',a:'In Stock'},
+{c:'wiring',m:'classic350',n:'Cable Kit — Throttle + Clutch + Brake (Classic 350)',p:'420',a:'In Stock'},
+{c:'wiring',m:'bullet350',n:'Complete Wiring Harness Kit (Bullet 350)',p:'1,850',a:'In Stock'},
+{c:'wiring',m:'bullet350',n:'Cable Kit — Throttle + Clutch + Brake (Bullet 350)',p:'420',a:'In Stock'},
+{c:'wiring',m:'meteor350',n:'Complete Wiring Harness Kit (Meteor 350)',p:'1,950',a:'In Stock'},
+{c:'wiring',m:'meteor350',n:'Cable Kit — Throttle + Clutch + Brake (Meteor 350)',p:'450',a:'In Stock'},
+{c:'wiring',m:'hunter350',n:'Complete Wiring Harness Kit (Hunter 350)',p:'1,950',a:'In Stock'},
+{c:'wiring',m:'hunter350',n:'Cable Kit — Throttle + Clutch + Brake (Hunter 350)',p:'450',a:'In Stock'},
+{c:'wiring',m:'himalayan450',n:'Complete Wiring Harness Kit (Himalayan 450)',p:'2,250',a:'In Stock'},
+{c:'wiring',m:'himalayan450',n:'Cable Kit — Throttle + Clutch + Brake (Himalayan 450)',p:'520',a:'In Stock'},
+{c:'wiring',m:'guerrilla450',n:'Complete Wiring Harness Kit (Guerrilla 450)',p:'2,250',a:'In Stock'},
+{c:'wiring',m:'guerrilla450',n:'Cable Kit — Throttle + Clutch + Brake (Guerrilla 450)',p:'520',a:'In Stock'},
+{c:'wiring',m:'interceptor650',n:'Complete Wiring Harness Kit (Interceptor 650)',p:'2,950',a:'In Stock'},
+{c:'wiring',m:'interceptor650',n:'Cable Kit — Throttle + Clutch + Brake (Interceptor 650)',p:'680',a:'In Stock'},
+{c:'wiring',m:'gt650',n:'Complete Wiring Harness Kit (Continental GT 650)',p:'2,950',a:'In Stock'},
+{c:'wiring',m:'gt650',n:'Cable Kit — Throttle + Clutch + Brake (Continental GT 650)',p:'680',a:'In Stock'},
+{c:'wiring',m:'supermeteor650',n:'Complete Wiring Harness Kit (Super Meteor 650)',p:'3,150',a:'In Stock'},
+{c:'wiring',m:'supermeteor650',n:'Cable Kit — Throttle + Clutch + Brake (Super Meteor 650)',p:'720',a:'In Stock'},
+{c:'wiring',m:'classic650',n:'Complete Wiring Harness Kit (Classic 650)',p:'3,150',a:'In Stock'},
+{c:'wiring',m:'classic650',n:'Cable Kit — Throttle + Clutch + Brake (Classic 650)',p:'720',a:'In Stock'},
+{c:'wiring',m:'shotgun650',n:'Complete Wiring Harness Kit (Shotgun 650)',p:'3,150',a:'In Stock'},
+{c:'wiring',m:'shotgun650',n:'Cable Kit — Throttle + Clutch + Brake (Shotgun 650)',p:'720',a:'In Stock'},
+{c:'wiring',m:'bear650',n:'Complete Wiring Harness Kit (Bear 650)',p:'3,150',a:'In Stock'},
+{c:'wiring',m:'bear650',n:'Cable Kit — Throttle + Clutch + Brake (Bear 650)',p:'720',a:'In Stock'},
+{c:'wiring',m:'bullet650',n:'Complete Wiring Harness Kit (Bullet 650)',p:'2,950',a:'In Stock'},
+{c:'wiring',m:'bullet650',n:'Cable Kit — Throttle + Clutch + Brake (Bullet 650)',p:'680',a:'In Stock'},
+{c:'wiring',m:'bullet500',n:'Complete Wiring Harness Kit (Bullet 500cc)',p:'1,650',a:'In Stock'},
+{c:'wiring',m:'bullet500',n:'Cable Kit — Throttle + Clutch + Brake (Bullet 500cc)',p:'380',a:'In Stock'},
+{c:'wiring',m:'scram411',n:'Complete Wiring Harness Kit (Scram 411)',p:'2,250',a:'In Stock'},
+{c:'wiring',m:'scram411',n:'Cable Kit — Throttle + Clutch + Brake (Scram 411)',p:'520',a:'In Stock'},
+{c:'wiring',m:'vintage',n:'Complete Wiring Harness Kit (Old Bullet / Vintage)',p:'1,650',a:'In Stock'},
+{c:'wiring',m:'vintage',n:'Cable Kit — Throttle + Clutch + Brake (Old Bullet / Vintage)',p:'360',a:'In Stock'},
+];
+
+var CL={engine:{i:'⚙️',l:'Engine'},brake:{i:'🛑',l:'Brakes'},electrical:{i:'⚡',l:'Electrical'},body:{i:'🪛',l:'Body & Frame'},suspension:{i:'🔄',l:'Suspension'},transmission:{i:'⚙️',l:'Transmission'},wiring:{i:'🔌',l:'Wiring & Cables'}};
+var MN={classic350:'Classic 350',bullet350:'Bullet 350',meteor350:'Meteor 350',hunter350:'Hunter 350',himalayan450:'Himalayan 450',guerrilla450:'Guerrilla 450',interceptor650:'Interceptor 650',gt650:'Continental GT 650',supermeteor650:'Super Meteor 650',classic650:'Classic 650',shotgun650:'Shotgun 650',bear650:'Bear 650',bullet650:'Bullet 650',bullet500:'Bullet 500cc',scram411:'Scram 411',vintage:'Old Bullet / Vintage'};
+var CN={engine:'Engine',brake:'Brakes',electrical:'Electrical',body:'Body & Frame',suspension:'Suspension',transmission:'Transmission',wiring:'Wiring & Cables'};
+
+function mLabel(ms){var a=ms.split(' ');return a.length>=14?'All RE Models':a.map(function(x){return MN[x]||x;}).join(' / ');}
+
+function renderParts(){
+  var g=document.getElementById('partsGrid'); if(!g) return;
+  var h='';
+  PD.forEach(function(d){
+    var cl=CL[d.c]||{i:'',l:''};
+    var ac=d.a==='In Stock'?'':'ltd';
+    h+='<div class="part-card" data-cat="'+d.c+'" data-md="'+d.m+'">'
+     +'<div class="part-cat">'+cl.i+' '+cl.l+'</div>'
+     +'<div class="part-name">'+d.n+'</div>'
+     +'<div class="part-model">'+mLabel(d.m)+'</div>'
+     +'<div class="price-row"><div class="price-wrap"><span class="price-rs">Rs.</span><span class="price-blur">'+d.p+'</span></div>'
+     +'<span class="avail '+ac+'">'+d.a+'</span></div>'
+     +'<div class="want-price">Want to know the price? <a href="#" onclick="openContactChoice(event,\''+d.n.replace(/'/g,"\\'")+'\')">Click Here</a></div></div>';
+  });
+  h+='<div class="more-parts-card" id="morePartsCard" style="display:none;"><div class="mpc-icon">🔧</div><div class="mpc-text">Looking for a different part? We stock many more parts not listed here for this bike.</div><a href="#" class="mpc-btn" onclick="openContactChoice(event)">Click Here to Contact Us</a></div>';
+  h+='<div class="minimize-row" id="minimizeRow" style="grid-column:1/-1;text-align:center;margin-top:8px;display:none;"><button class="show-all-btn" onclick="minimizeProducts()"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAAwADADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDzwR+1PERq4kHtUy2x9KlyPQVMzxCfSnCH2rRW2PpUgtfapcy1SZl+QfSl8j2rVFofSlNqfSpdRFexZLFak9qtx2RParllEhXkg4q3NJb2lu88zBI41LMxHQCvNnirOyPXpYVcvMzPSw9qnXTuMnAHvVdfFmgeWX+3px22Nn8sVy+t+NH1AS21rGY7SRdpDqNze554qoKtUla1vUyrVsNSje6b8jtBp4A7GmPY+1ZHgnW7zUUuILyRXEKp5eEA45ByR+FdQzrXJXrOjNwk9TpoKFempxWjPPNY8RvGtsulyywh4SJ87SS24jK8ZHGK56SWYSeZ9okMp6/M2R+PemO+4jA6dzSH5jknmvchTjBaI+XrV51JXb/4A3O58uTyeSBVmF7ZL5mQyeVhhGWAzkjAJ7d6rAcYpygA5Iz+NW9TGMrM3LnU2ttRR9PlFni3RJnRQRkgZAH5fiK1tL8TzQuYdQuhco4zFOqYOR1BFcdI/mOzsPvHPWgTFQgHRDkVy1MJTqQ5ZL/P7z0KWOnSqOcdr7dPu22P/9k=" style="width:20px;height:20px;border-radius:50%;vertical-align:middle;margin-right:6px;object-fit:cover;">Minimize Products</button></div>';
+  g.innerHTML=h;
+  observeWantPrice();
+}
+var wpObs=null, wpTouchInit=false;
+function observeWantPrice(){
+  document.querySelectorAll('.part-card').forEach(function(c){c.classList.remove('active');});
+  if(wpTouchInit)return;
+  wpTouchInit=true;
+  var lastX=0,lastY=0;
+  function setActive(card){
+    document.querySelectorAll('.part-card.active').forEach(function(c){if(c!==card)c.classList.remove('active');});
+    if(card)card.classList.add('active');
+  }
+  function handleTouch(clientX,clientY){
+    var el=document.elementFromPoint(clientX,clientY);
+    var card=el?el.closest('.part-card'):null;
+    if(card)setActive(card);
+  }
+  document.addEventListener('touchstart',function(e){
+    var t=e.touches[0];if(!t)return;
+    lastX=t.clientX;lastY=t.clientY;
+    handleTouch(t.clientX,t.clientY);
+  },{passive:true});
+  document.addEventListener('touchmove',function(e){
+    var t=e.touches[0];if(!t)return;
+    var dx=Math.abs(t.clientX-lastX), dy=Math.abs(t.clientY-lastY);
+    if(dx>14||dy>14){ lastX=t.clientX;lastY=t.clientY; handleTouch(t.clientX,t.clientY); }
+  },{passive:true});
+  /* keep the highlighted product visible after lifting the finger, until user touches a new one or scrolls far */
+  document.addEventListener('mouseover',function(e){var card=e.target.closest?e.target.closest('.part-card'):null;if(card)setActive(card);});
+}
+renderParts();
+
+/* filter state */
+var selModels=[], selCats=[];
+
+function pop(){
+  var cards=document.querySelectorAll('.part-card.show');
+  cards.forEach(function(c,i){c.classList.remove('pop');void c.offsetWidth;c.style.animationDelay=(i*25)+'ms';c.classList.add('pop');});
+  observeWantPrice();
+}
+function showBar(lbl,cnt,hideCount){
+  document.getElementById('fbName').textContent=lbl;
+  document.getElementById('fbCount').textContent=cnt>0?cnt+' item(s)':'0 found — call us!';
+  var fcw=document.getElementById('fbCountWrap'); if(fcw)fcw.style.display=hideCount?'none':'inline';
+  document.getElementById('filterBar').style.display='flex';
+  var ph=document.getElementById('selectPlaceholder'); if(ph)ph.style.display='none';
+  var mpc=document.getElementById('morePartsCard'); if(mpc)mpc.style.display='block';
+  var mr=document.getElementById('minimizeRow'); if(mr)mr.style.display='block';
+  document.getElementById('filterBar').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function hideBar(){document.getElementById('filterBar').style.display='none';}
+
+/* model select: highlight box, scroll to category tabs */
+function selectModel(m){
+  var i=selModels.indexOf(m);
+  if(i===-1){selModels.push(m);} else {selModels.splice(i,1);}
+  document.querySelectorAll('.pm-card').forEach(function(el){el.classList.toggle('selected',selModels.indexOf(el.dataset.model)!==-1);});
+  hideBar();
+  document.getElementById('searchWrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+/* ticker / models-sec clicks also go to products */
+function goModel(m){
+  document.getElementById('products').scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(function(){
+    selModels=[m];
+    document.querySelectorAll('.pm-card').forEach(function(el){el.classList.toggle('selected',selModels.indexOf(el.dataset.model)!==-1);});
+    hideBar();
+    document.getElementById('searchWrap').scrollIntoView({behavior:'smooth',block:'start'});
+  },400);
+}
+
+/* category toggle */
+function catAll(btn){
+  selCats=[]; selModels=[];
+  document.querySelectorAll('.pm-card').forEach(function(el){el.classList.remove('selected');});
+  document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+function toggleCat(cat,btn){
+  var allBtn=document.querySelector('.cat-btn[data-all="1"]');if(allBtn)allBtn.classList.remove('active');
+  var i=selCats.indexOf(cat);
+  if(i===-1){selCats.push(cat);btn.classList.add('active');}
+  else{selCats.splice(i,1);btn.classList.remove('active');}
+  var totalCats=document.querySelectorAll('.cat-btn:not([data-all="1"])').length;
+  if(selCats.length===totalCats){
+    selCats=[];
+    document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active');b.blur();});
+    if(allBtn)allBtn.classList.add('active');
+  }
+  if(btn&&btn.blur)btn.blur();
+}
+
+/* apply filters — model + categories combined */
+function applyFilters(){
+  var cnt=0;
+  document.querySelectorAll('.part-card').forEach(function(card){
+    var mOk=true;
+    if(selModels.length){
+      var ms=card.dataset.md.split(' ');
+      mOk=selModels.some(function(sm){return ms.indexOf(sm)!==-1;});
+    }
+    var cOk=selCats.length===0||selCats.indexOf(card.dataset.cat)!==-1;
+    var ok=mOk&&cOk;
+    card.classList.toggle('show',ok);
+    if(ok)cnt++;
+  });
+  var lbl=[];
+  if(selModels.length)lbl.push(selModels.map(function(m){return MN[m]||m;}).join(' + '));
+  if(selCats.length)lbl.push(selCats.map(function(c){return CN[c]||c;}).join(' + '));
+  showBar(lbl.length?lbl.join(' — '):'All Parts',cnt,false);
+  var tmb=document.getElementById('topMinimizeBtn'); if(tmb)tmb.style.display='none';
+  pop();
+}
+
+/* search */
+function doSearch(q){
+  document.getElementById('sClear').style.display=q?'block':'none';
+  if(!q){clearAll();return;}
+  selModels=[];selCats=[];
+  document.querySelectorAll('.pm-card').forEach(function(el){el.classList.remove('selected');});
+  var cnt=0,ql=q.toLowerCase();
+  document.querySelectorAll('.part-card').forEach(function(card){
+    var ok=card.querySelector('.part-name').textContent.toLowerCase().indexOf(ql)!==-1
+      ||card.querySelector('.part-model').textContent.toLowerCase().indexOf(ql)!==-1;
+    card.classList.toggle('show',ok);if(ok)cnt++;
+  });
+  showBar('"'+q+'"',cnt,false);
+  var tmb=document.getElementById('topMinimizeBtn'); if(tmb)tmb.style.display='none';
+  pop();
+}
+function clearSearch(){document.getElementById('sInput').value='';document.getElementById('sClear').style.display='none';clearAll();}
+function clearAll(){
+  document.querySelectorAll('.part-card').forEach(function(c){c.classList.remove('show');});
+  document.querySelectorAll('.pm-card').forEach(function(el){el.classList.remove('selected');});
+  document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active');});
+  selModels=[];selCats=[];hideBar();
+  var ph=document.getElementById('selectPlaceholder'); if(ph)ph.style.display='block';
+  var mpc=document.getElementById('morePartsCard'); if(mpc)mpc.style.display='none';
+  var mr=document.getElementById('minimizeRow'); if(mr)mr.style.display='none';
+  var tmb=document.getElementById('topMinimizeBtn'); if(tmb)tmb.style.display='none';
+  pop();
+}
+function minimizeProducts(){
+  clearAll();
+  document.getElementById('searchWrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function showAllProducts(){
+  document.querySelectorAll('.part-card').forEach(function(c){c.classList.add('show');});
+  document.querySelectorAll('.pm-card').forEach(function(el){el.classList.remove('selected');});
+  document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active');});
+  var allBtn=document.querySelector('.cat-btn[data-all="1"]');if(allBtn)allBtn.classList.add('active');
+  selModels=[];selCats=[];
+  pop();
+  var cnt=document.querySelectorAll('.part-card.show').length;
+  showBar('All Parts',cnt,true);
+  var tmb=document.getElementById('topMinimizeBtn'); if(tmb)tmb.style.display='inline-block';
+}
+
+/* eye tap */
+function eyeTap(btn){
+  document.querySelectorAll('.contact-tip.show').forEach(function(t){
+    t.classList.remove('show');
+    if(t.previousElementSibling&&t.previousElementSibling.classList.contains('eye-btn'))
+      t.previousElementSibling.classList.remove('open');
+  });
+  var tip=btn.nextElementSibling;if(!tip)return;
+  btn.classList.add('open');
+  tip.classList.add('show');
+  clearTimeout(tip._t);
+  tip._t=setTimeout(function(){tip.classList.remove('show');btn.classList.remove('open');},2500);
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.eye-btn')&&!e.target.closest('.contact-tip')){
+    document.querySelectorAll('.contact-tip.show').forEach(function(t){
+      t.classList.remove('show');
+      if(t.previousElementSibling)t.previousElementSibling.classList.remove('open');
+    });
+  }
+});
+
+/* NAV */
+var nav=document.getElementById('nav');
+var callBar=document.querySelector('.call-bar');
+function measureCallBar(){
+  var h=callBar?callBar.offsetHeight:0;
+  document.documentElement.style.setProperty('--nav-offset',h+'px');
+}
+measureCallBar();
+window.addEventListener('load',measureCallBar);
+window.addEventListener('resize',measureCallBar);
+
+var navTicking=false, navScrolledState=null, bttState=null;
+function updateNavState(){
+  var scrolled=window.scrollY>50;
+  if(scrolled!==navScrolledState){
+    navScrolledState=scrolled;
+    nav.classList.toggle('scrolled',scrolled);
+    if(callBar)callBar.classList.toggle('hide',scrolled);
+  }
+  var showBtt=window.scrollY>300;
+  if(showBtt!==bttState){
+    bttState=showBtt;
+    document.getElementById('btt').classList.toggle('v',showBtt);
+  }
+  navTicking=false;
+}
+window.addEventListener('scroll',function(){
+  if(navTicking)return; navTicking=true;
+  requestAnimationFrame(updateNavState);
+},{passive:true});
+function toggleMenu(){document.getElementById('mobMenu').classList.toggle('open');}
+
+/* FADE UP */
+var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target);}});},{threshold:0.08});
+document.querySelectorAll('.fu').forEach(function(f){obs.observe(f);});
+
+/* PRELOADER — defined last, runs immediately */
+var _opened=false;
+function openSite(){
+  if(_opened)return;_opened=true;
+  var pl=document.getElementById('preloader');
+  if(!pl)return;
+  pl.style.transition='opacity 0.8s ease';
+  pl.style.opacity='0';
+  setTimeout(function(){pl.style.display='none';},800);
+}
+setTimeout(openSite,8000); /* absolute failsafe */
+
+(function(){
+  var wrap=document.getElementById('plWrap');
+  var bar=document.getElementById('plBar');
+  var countEl=document.getElementById('plCount');
+  if(!wrap||!bar){openSite();return;}
+
+  var FL=[["⚙️","Piston Kit"],["🛑","Front Brake Pads"],["⚡","Battery 12V"],["🔄","Fork Seal Kit"],["⚙️","Gasket Set"],["⚡","Spark Plug NGK"],["⚙️","Oil Filter"],["🛑","Rear Brake Pads"],["⚙️","Air Filter"],["🔄","Rear Shock Absorber"],["⚙️","Timing Chain Kit"],["⚡","Wiring Harness"],["🛑","Brake Disc Front"],["⚙️","Crankcase Assembly"],["⚡","Headlight LED"],["🪛","Side Stand"],["⚙️","Cylinder Head"],["🔄","Steering Bearing"],["⚡","Starter Motor"],["🪛","Exhaust Silencer"],["⚙️","Valve Assembly"],["🛑","Brake Caliper"],["⚡","Horn Assembly"],["🪛","Leg Guard Chrome"],["⚙️","Camshaft"],["⚡","Ignition Coil"],["🔄","Wheel Bearing"],["⚙️","Connecting Rod"],["🪛","Seat Cover"],["⚡","Rectifier"],["⚙️","Oil Pump"],["🛑","Brake Drum Rear"],["⚡","Tail Light LED"],["🔄","Swing Arm Bush"],["⚙️","Clutch Spring"],["🪛","Footrest"],["⚡","Turn Signal Set"],["⚙️","Head Bolt Set"],["🛑","Brake Lever"],["🔄","Chain Adjuster"],["⚙️","Engine Mounting"],["⚡","Speedometer"],["🪛","Mudguard Front"],["⚙️","Valve Spring"],["🛑","Brake Wire"],["⚡","ABS Module"],["⚙️","Piston Rings"],["🔄","Fork Oil 10W"],["🪛","Handlebar Grip"],["⚡","TFT Display"],["⚙️","Flywheel Assembly"],["🛑","Disc Brake Pads"],["⚡","USB-C Port"],["🔄","Linkage Rod"],["⚙️","Crank Bearing"],["🪛","Side Panel"],["⚡","Fuel Indicator"],["⚙️","Tappet Gasket"],["🛑","Brake Fluid DOT4"],["🔄","Rear Monoshock"],["⚙️","Drain Bolt"],["⚡","LED Indicator"],["🪛","Alloy Wheel Front"],["⚙️","Intake Manifold"],["🛑","Caliper Seal Kit"],["⚡","Kill Switch"],["🔄","Fender Stay"],["⚙️","Sprocket Front 15T"],["🛑","Master Cylinder"],["⚡","Headlight Bulb"],["⚙️","Sprocket Rear 43T"],["🪛","Number Plate Bracket"],["⚡","Blinker Relay"],["🔄","Fork Boot"],["⚙️","Stator Assembly"],["🛑","Brake Cam"],["⚡","Voltage Regulator"],["🪛","Saree Guard"],["⚙️","Balance Shaft"],["🔄","Rear Axle"],["⚡","CDI Unit"],["⚙️","Throttle Body"],["🛑","Brake Panel"],["🪛","Instrument Cluster"],["⚙️","Water Pump Seal"],["⚡","Gear Sensor"],["🔄","Center Stand Spring"],["⚙️","Fuel Injector"],["🛑","Rear Brake Disc"],["⚡","Horn Relay"],["🪛","Fuel Tank Cap"],["⚙️","Engine Casing"],["🔄","Tyre Valve"],["⚡","Bluetooth Module"],["🛑","Brake Hose"],["⚙️","Radiator 450cc"],["🪛","Crash Guard"],["⚡","Combo Switch"],["🔄","Rim Front 18in"],["⚙️","Gearbox Bearing"],["⚡","Start Stop Switch"],["🛑","ABS Sensor"],["⚙️","Clutch Cover"],["🪛","Rear Carrier"],["🔄","Spoke Set"],["⚡","Ammeter"],["⚙️","Con Rod Bearing"],["🛑","Brake Shoe"],["🪛","Tool Kit Box"],["⚙️","Cam Tensioner"],["⚡","Auxiliary Light"],["🔄","Wheel Rim Rear"],["⚙️","Carburettor Kit"],["🛑","Disc Rotor"],["🪛","Mirror Set"],["⚡","Fuel Pump"],["⚙️","Valve Guide"],["🔄","Axle Nut"],["⚡","Fuse Box"],["🛑","Return Spring"],["⚙️","Camchain Guide"],["🪛","Windscreen 450"],["⚡","Charging Socket"],["🔄","Fork Tube Inner"],["⚙️","Rocker Arm"],["⚡","Shift Indicator"],["🛑","Brake Pin"],["🪛","Rear Fender"],["⚙️","Guard Plate"],["🔄","Tyre Tube"],["⚡","Main Fuse 30A"],["⚙️","Cam Follower"],["🛑","Bearing Kit"],["🪛","Radiator Guard"],["⚡","ECU Unit"],["⚙️","Ring Gear"],["🔄","Chain Link 428"],["⚡","Speed Sensor"],["🛑","Brake Noodle"],["🪛","Pillion Footrest"],["⚙️","Clutch Hub"],["⚡","Reverse Lamp"],["🔄","Fork Cap"],["🛑","Drum Shoe Set"],["⚙️","Oil Ring"],["⚡","Tachometer"],["🪛","Footrest Bolt"],["🔄","Head Bearing"],["⚙️","Alternator"],["🛑","Clutch Cable"],["⚡","Stand Sensor"],["🪛","Tank Strap"],["⚙️","Sump Plate"],["🔄","Rim Spoke"],["⚡","Indicator Switch"],["🛑","Light Switch"],["⚙️","Input Shaft"],["🪛","Handlebar Clamp"],["⚡","Ground Wire"],["🔄","Sprocket Bolt"],["⚙️","Output Seal"],["🛑","Wheel Hub"],["⚡","Relay Unit 12V"],["🪛","Tank Badge"],["⚙️","Selector Drum"],["🔄","Chain Slider"],["⚡","Neutral Switch"],["🛑","Pad Set 650"],["⚙️","Oil Strainer"],["🪛","Body Panel Bolt"],["⚡","Speed Sensor 450"],["⚙️","Conrod Bolt"],["🔄","Pinch Bolt"],["🛑","Rear Lever"],["⚡","Temp Sensor"],["⚙️","Stud Bolt"],["🪛","Seat Latch"],["🔄","Spring Seat"],["⚡","Fuel Sensor"],["🛑","Caliper Pin"],["⚙️","Side Cover"],["⚡","DRL Strip"],["🔄","Rim Lock"],["🛑","Banjo Bolt"],["🪛","Radiator Shroud"],["⚙️","Drive Gear"],["⚡","Hazard Switch"],["🔄","Stand Pivot"],["🛑","Friction Plate"],["⚙️","Cam Bearing"],["⚡","Wiring Loom"],["🪛","Tank Side Cover"],["🔄","Caliper Bracket"],["🛑","Bleed Nipple"],["⚙️","Shift Fork"],["⚡","Starter Relay"],["🪛","Engine Spoiler"],["🔄","Shock Linkage"],["⚡","Pass Switch"],["🛑","Pad Clip"]];
+
+  var total=FL.length, ivl=5000/total, idx=0;
+  var el=document.createElement('div');
+  el.className='pl-part-item active';
+  el.innerHTML='<span class="pl-part-icon"></span><span class="pl-part-name"></span>';
+  wrap.appendChild(el);
+  var iEl=el.querySelector('.pl-part-icon'), nEl=el.querySelector('.pl-part-name');
+  iEl.textContent=FL[0][0]; nEl.textContent=FL[0][1];
+  bar.style.width='0%'; idx=1;
+
+  /* countdown 10→0 */
+  var cv=5;
+  if(countEl)countEl.textContent='5';
+  var ct=setInterval(function(){cv--;if(countEl)countEl.textContent=Math.max(0,cv);if(cv<=0)clearInterval(ct);},1000);
+
+  /* flash */
+  var ft=setInterval(function(){
+    if(_opened){clearInterval(ft);return;}
+    if(idx>=total){
+      clearInterval(ft);
+      bar.style.width='100%';
+      if(countEl)countEl.textContent='0';
+      setTimeout(openSite,800);
+      return;
+    }
+    var p=FL[idx];
+    el.classList.remove('active');el.classList.add('out');
+    setTimeout(function(){iEl.textContent=p[0];nEl.textContent=p[1];el.classList.remove('out');el.classList.add('active');},30);
+    bar.style.width=((idx/total)*100)+'%';
+    idx++;
+  },ivl);
+})();
+</script>
+</body>
+</html>
